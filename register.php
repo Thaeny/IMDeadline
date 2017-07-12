@@ -12,15 +12,11 @@ spl_autoload_register(function($class){
     include_once("classes/" .  $class . ".class.php");
 });
 
-
-
 // Als post niet leeg is -> nieuwe User registreren via register-functie...
 if(!empty($_POST)){
     $register = new User();
     $register->Register();
 }
-
-
 
 
 

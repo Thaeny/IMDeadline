@@ -18,7 +18,7 @@ class User{
     private $password;
 
 
-    // Getters and setters
+    // Getters en setters
     //------------------------------------------------------- Id
     public function getId(){
         return $this->id;
@@ -107,16 +107,12 @@ class User{
 
             if ($result['EmailCount'] == 0) {
 
-
                 $conn = Db::getInstance();
                 $stmt = $conn->prepare('SELECT COUNT(username) AS UsernameCount FROM users WHERE username = :username');
                 $stmt->execute(array('username' => $_POST['username']));
                 $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
                 if ($result['UsernameCount'] == 0) {
-
-
-
 
                     if(strlen($_POST["password"]) >= '6'){
 
@@ -138,29 +134,57 @@ class User{
                         $user->Save();
 
                         session_start();
-                        $_SESSION["user"] = $username;
-                        header("Location: login.php");
-
+                        $_SESSION["user"] = $email;
+                        header("Location: timeline.php");
                     }
 
-                    else
-                    {
+                    else {
                         return $errormessage = "<h4>Password should be at least 6 characters long.</h4>";
                     }
                 }
-                else
-                {
+
+                else {
                     return $errormessage = "<h4>This username already exists.</h4>";
                 }
             }
-            else
-            {
+
+            else {
                 return $errormessage = "<h4>This email is already in use.</h4>";
             }
         }
     }
 
 
+
+
+
+
+    //--------------------------------------------------------- Login User
+
+    public function Login(){
+        // Form completed?
+        if(!empty($_POST)){
+
+            $conn = Db::getInstance();
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+
+            $var = $conn->prepare("SELECT * FROM users WHERE email = :email;");
+            $var->bindParam(':email', $email);
+            $var->execute();
+            $res = $var->fetch();
+            if(password_verify($password, $res['password'])){
+                // OK
+                session_start();
+                $_SESSION['user'] = $email;
+                $_SESSION['id'] = $res['id'];
+                header("Location: timeline.php");
+            }else{
+                // Not OK
+                $errormessage = "<h4>Something went wrong</h4>";
+            }
+        }
+    }
 
 
 
