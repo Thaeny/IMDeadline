@@ -79,7 +79,7 @@ $lists = $list->GetLists();
             <p>Lists overview</p>
         </div>
 
-        <div class="deadlineContainer">
+        <div class="listContainer">
             <?php foreach( $lists as $lijst):  ?>
 
                 <div class="lijst">
@@ -87,6 +87,9 @@ $lists = $list->GetLists();
                     <h3><a href="list.php?id=<?php echo $lijst['listId']; ?> "><?php echo $lijst['listname']; ?></a></h3>
 
 
+                    <?php if($_SESSION['user'] == $lijst['username']): ?>
+                        <a href="#" class="btnDelete" data-id=<?php echo $lijst['listId'] ?>></a>
+                    <?php endif; ?>
 
 
                 </div>

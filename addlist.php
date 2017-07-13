@@ -29,7 +29,7 @@ if(!empty($_POST))
 
         try{
             $list->SaveList();
-            header('Location: timeline.php');
+            header('Location: lists.php');
         }
         catch (Exception $e)
         {

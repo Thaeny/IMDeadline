@@ -38,7 +38,7 @@ html, body{
     font-family: "Lato", "proxima-nova", "Helvetica Neue", Arial, sans-serif;
 }
     #addBTN1:hover {
-        background-color: royalblue;
+        background-color: roy;
     }
 
     .dropdown-menu a{
@@ -106,14 +106,47 @@ html, body{
     font-weight: 300;
 }
 
-.deadlineContainer{
+.listContainer{
     width: 100%;
     height: auto;
+    column-count: 4;
+    column-gap: 15px;
+    column-fill: auto;
     padding: 20px;
     display: block;
     margin-top: 125px;
     background-color: whitesmoke;
 }
 
+.lijst{
+    display: block;
+    text-decoration: none;
+    border-radius: 10px;
+    padding: 10px 10px 20px 10px;
+    border: 2px solid #faeded;
+    margin: 0px 2% 20px 2%;
+    height: 250px;
+    -webkit-column-break-inside: avoid;
+    background-color: white;
+    transition-duration: 0.3s;
+}
 
+.btnDelete{
+    opacity: 1;
+    float: right;
+    margin-right:10px;
+    margin-top: 60px;
+    width: 20px;
+    height: 20px;
+    display: block;
+    background-image: url("../images/trashBlue.png");
+    background-size: 90%;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition-duration: 0.15s;
+}
 
+.btnDelete:hover{
+    opacity: 0.6;
+    transition-duration: 0.15s;
+}
