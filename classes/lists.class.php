@@ -89,6 +89,14 @@ class Lists
     }
 
 
+    public function DeleteList($id) {
+        $value = $id;
+        $conn = Db::getInstance();
+
+        $stmt = $conn->prepare('DELETE FROM lists WHERE listId = :listId');
+        $stmt->bindValue(":listId", $value );
+        $stmt->execute();
+    }
 
 
 

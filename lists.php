@@ -88,7 +88,7 @@ $lists = $list->GetLists();
 
 
                     <?php if($_SESSION['user'] == $lijst['username']): ?>
-                        <a href="#" class="btnDelete" data-id=<?php echo $lijst['listId'] ?>></a>
+                        <a href="#" class="btnDeleteList" data-id=<?php echo $lijst['listId'] ?>></a>
                     <?php endif; ?>
 
 
@@ -108,6 +108,7 @@ $lists = $list->GetLists();
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="js/jQuery.js"></script>
 <script src="bootstrap/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -112,6 +112,7 @@ html, body{
     column-count: 4;
     column-gap: 15px;
     column-fill: auto;
+
     padding: 20px;
     display: block;
     margin-top: 125px;
@@ -121,9 +122,10 @@ html, body{
 .lijst{
     display: block;
     text-decoration: none;
+    text-align: center;
     border-radius: 10px;
-    padding: 10px 10px 20px 10px;
-    border: 2px solid #faeded;
+    padding: 110px 10px 20px 10px;
+    border: 2px solid lightgray;
     margin: 0px 2% 20px 2%;
     height: 250px;
     -webkit-column-break-inside: avoid;
@@ -131,14 +133,21 @@ html, body{
     transition-duration: 0.3s;
 }
 
-.btnDelete{
-    opacity: 1;
-    float: right;
-    margin-right:10px;
-    margin-top: 60px;
+.lijst a{
+    text-align: center;
+    color: cornflowerblue;
+    font-family: "Lato", "proxima-nova", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 500;
+    font-size: 1.2em;
+}
+
+.btnDeleteList{
+    opacity: 0.4;
     width: 20px;
     height: 20px;
     display: block;
+    margin: 80px 10px 10px 0;
+    float: right;
     background-image: url("../images/trashBlue.png");
     background-size: 90%;
     background-repeat: no-repeat;
@@ -146,7 +155,7 @@ html, body{
     transition-duration: 0.15s;
 }
 
-.btnDelete:hover{
-    opacity: 0.6;
+.btnDeleteList:hover{
+    opacity: 0.8;
     transition-duration: 0.15s;
 }
