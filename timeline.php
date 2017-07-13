@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="bootstrap/bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="bootstrap/bootstrap-3.3.7-dist/css/bootstrap.css">
     <link rel="stylesheet" href="bootstrap/bootstrap-3.3.7-dist/js/bootstrap.min.js">
+    <link rel="stylesheet" href="css/main.css">
     <title>IMDeadline</title>
 </head>
 
@@ -29,7 +30,7 @@
 
 
 
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand" href="timeline.php">

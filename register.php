@@ -32,7 +32,9 @@ if(!empty($_POST)){
 
     <!-- Latest compiled and minified CSS / Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="bootstrap/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap/bootstrap-3.3.7-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="bootstrap/bootstrap-3.3.7-dist/js/bootstrap.min.js">
     <!-- Eigen css -->
     <link rel="stylesheet" href="css/register.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
