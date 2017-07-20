@@ -10,7 +10,7 @@ html, body{
 .navbar{
     width: 100%;
     position: fixed;
-    z-index: 3;
+    z-index: 4;
     padding: 5px 20px 0px 20px;
     background-color: white;
     border-radius: 0px;
@@ -96,9 +96,10 @@ html, body{
 .titleContainer {
     width: 100%;
     position: fixed;
+    z-index: 3;
     margin-top: 55px;
     background-color: white;
-    padding: 30px 50px 15px 50px;
+    padding: 35px 50px 20px 50px;
     border-bottom: 1px solid lightgrey;
     color: slategrey;
     font-size: 1.5em;
@@ -109,26 +110,36 @@ html, body{
 .listContainer{
     width: 100%;
     height: auto;
-    column-count: 4;
-    column-gap: 15px;
-    column-fill: auto;
-
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: left;
+    /* You can set flex-wrap and flex-direction individually */
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    /* Or do it all in one line with flex flow */
+    -webkit-flex-flow: row wrap;
+    flex-flow: row wrap;
     padding: 20px;
-    display: block;
-    margin-top: 125px;
+    margin-top: 145px;
     background-color: whitesmoke;
 }
 
 .lijst{
     display: block;
     text-decoration: none;
+    width: 300px;
     text-align: center;
-    border-radius: 10px;
+    border-radius: 4px;
     padding: 110px 10px 20px 10px;
-    border: 2px solid lightgray;
+    border: 1px solid lightgray;
     margin: 0px 2% 20px 2%;
     height: 250px;
-    -webkit-column-break-inside: avoid;
+    align-content: flex-end;
     background-color: white;
     transition-duration: 0.3s;
 }
@@ -140,6 +151,9 @@ html, body{
     font-weight: 500;
     font-size: 1.2em;
 }
+    .lijst a:hover{
+        cursor: pointer;
+    }
 
 .btnDeleteList{
     opacity: 0.4;
