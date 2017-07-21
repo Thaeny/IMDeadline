@@ -21,11 +21,8 @@ if(!isset($_SESSION['user'])) {
     //blabla
 }
 
-
-
-
-
-
+$listTask =  new Tasks();
+$listTasks = $listTask->GetListTasks();
 
 ?>
 
@@ -102,9 +99,23 @@ if(!isset($_SESSION['user'])) {
 
         </div>
 
-        <div class="listContainer">
+        <div class="taskContainer">
+
+            <?php foreach( $listTasks as $t):  ?>
+                <a href="task.php?id=<?php echo $t['taskId']; ?>">
+                    <div class="task">
+                        <p id="taskTitle"><?php echo $t['taskname']; ?></p><br>
+                        <p id="taskDescriptions"><?php echo $t['coursename']; ?> - <?php echo $t['listname']; ?></p>
+
+                        <p id="taskDeadline"><?php echo $t['deadline']; ?></p>
+                        <br><br>
 
 
+                    </div>
+                </a>
+
+
+            <?php endforeach; ?>
 
 
         </div>

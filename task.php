@@ -84,9 +84,15 @@ $taskData = $task->GetSingleTask($taskID);
 
                         echo '<div class="line"></div>';
 
-                    echo '<p class="taskinf">List : ' . $data['listname'] . '</p>';
-                    echo '<p class="taskinf">Course : ' . $data['coursename'] . '</p>';
-                    echo '<p class="taskinf">Creator : ' . $data['username'] . '</p>';
+                    echo '<p class="taskinf">
+                              <inf>List : ' . $data['listname'] . '</inf>
+                              <inf>Course : ' . $data['coursename'] . '</inf>
+                              <inf2>Creator : ' . $data['username'] . '</inf2>
+                              <br><br><br>
+                              <info>Info: <br><br> ' . $data['info'] . '</info>
+                          </p>';
+
+
 
 
                 }

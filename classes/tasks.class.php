@@ -142,6 +142,8 @@ class Tasks
     }
 
 
+
+
     public function GetSingleTask($taskID)
     {
         $db = Db::getInstance();
@@ -155,6 +157,22 @@ class Tasks
         return $rResult;
     }
 
+
+
+
+    public function GetListTasks()
+    {
+        $db = Db::getInstance();
+
+        $waarde = $_GET['id'];
+        $stmt = $db->prepare("SELECT * FROM tasks AS t JOIN lists AS l ON(t.listname = l.listname) WHERE listId = $waarde");
+
+
+        $stmt->execute();
+        $rResult = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $rResult;
+    }
 
 
 
