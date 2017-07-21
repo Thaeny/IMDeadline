@@ -19,6 +19,7 @@ class Tasks
     private $m_sCoursename;
     private $m_sListname;
     private $m_sInfo;
+    private $m_sWorkhours;
 
 
 
@@ -53,6 +54,10 @@ class Tasks
 
             case "Info":
                 $this->m_sInfo = $p_vValue;
+                break;
+
+            case "Workhours":
+                $this->m_sWorkhours = $p_vValue;
                 break;
         }
     }
@@ -91,6 +96,10 @@ class Tasks
                 $vResult = $this->m_sInfo;
                 break;
 
+            case "Workhours":
+                $vResult = $this->m_sWorkhours;
+                break;
+
         }
         return $vResult;
     }
@@ -101,24 +110,51 @@ class Tasks
 
     public function SaveTask()
         /*
-        De methode Save dient om een nieuwe LIST te bewaren in onze databank.
+        De methode Save dient om een nieuwe TASK te bewaren in onze databank.
         */
     {
 
         $db = Db::getInstance();
 
-        $stmt = $db->prepare("INSERT INTO tasks (taskname, username, deadline, listname, coursename, info) VALUES (:taskname, :username, :deadline, :listname, :coursename, :info)");
+        $stmt = $db->prepare("INSERT INTO tasks (taskname, username, deadline, listname, coursename, info, workhours) VALUES (:taskname, :username, :deadline, :listname, :coursename, :info, :workhours)");
         $stmt->bindValue(':taskname', $this->m_sTaskname, PDO::PARAM_STR);
         $stmt->bindValue(":username",$_SESSION['user']);
         $stmt->bindValue(':deadline', $this->m_dDeadline, PDO::PARAM_STR);
         $stmt->bindValue(':listname', $this->m_sListname, PDO::PARAM_STR);
         $stmt->bindValue(':coursename', $this->m_sCoursename, PDO::PARAM_STR);
         $stmt->bindValue(':info', $this->m_sInfo, PDO::PARAM_STR);
+        $stmt->bindValue(':workhours', $this->m_sWorkhours, PDO::PARAM_STR);
 
         $stmt->execute();
         return $db->lastInsertId();
 
     }
+
+
+
+
+    public function getAllTasks () {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare('SELECT * FROM tasks ORDER BY deadline asc');
+        $statement->execute();
+        $tasks = $statement->fetchAll();
+        return $tasks;
+    }
+
+
+    public function GetSingleTask($taskID)
+    {
+        $db = Db::getInstance();
+
+        $stmt = $db->prepare("SELECT * FROM tasks WHERE taskId = :taskId ");
+        $stmt->bindValue(':taskId', $taskID);
+
+        $stmt->execute();
+        $rResult = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $rResult;
+    }
+
 
 
 

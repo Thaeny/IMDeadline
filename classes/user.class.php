@@ -134,7 +134,7 @@ class User{
                         $user->Save();
 
                         session_start();
-                        $_SESSION["user"] = $email;
+                        $_SESSION["user"] = $username;
                         header("Location: timeline.php");
                     }
 
@@ -176,7 +176,7 @@ class User{
             if(password_verify($password, $res['password'])){
                 // OK
                 session_start();
-                $_SESSION['user'] = $email;
+                $_SESSION['user'] = $res['username'];
                 $_SESSION['id'] = $res['id'];
                 header("Location: timeline.php");
             }else{

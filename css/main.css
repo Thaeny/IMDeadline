@@ -5,8 +5,17 @@ html, body{
     background-color: whitesmoke;
 }
 
+a:hover, a:visited, a:link, a:active
+{
+    text-decoration: none;
+}
 
-/* NAV-BAR */
+
+
+                /* NAV-BAR */
+                /* NAV-BAR */
+                /* NAV-BAR */
+
 .navbar{
     width: 100%;
     position: fixed;
@@ -38,7 +47,7 @@ html, body{
     font-family: "Lato", "proxima-nova", "Helvetica Neue", Arial, sans-serif;
 }
     #addBTN1:hover {
-        background-color: roy;
+        background-color: royalblue;
     }
 
     .dropdown-menu a{
@@ -52,7 +61,10 @@ html, body{
 
 
 
-/* MAIN */
+                /* MAIN */
+                /* MAIN */
+                /* MAIN */
+
 .main{
     background-color: whitesmoke;
     width:100%;
@@ -169,7 +181,125 @@ html, body{
     transition-duration: 0.15s;
 }
 
-.btnDeleteList:hover{
-    opacity: 0.8;
-    transition-duration: 0.15s;
+    .btnDeleteList:hover{
+        opacity: 0.8;
+        transition-duration: 0.15s;
+    }
+
+
+
+
+                /* TASKS */
+                /* TASKS */
+                /* TASKS */
+
+.taskContainer{
+    padding: 30px;
+    width: 100%;
+    height: 3000px;
+    margin-top: 135px;
+    display: block;
 }
+
+.task{
+    text-decoration: none;
+    width: 100%;
+    margin: 0px auto 10px auto;
+    padding-left: 50px;
+    background-color: white;
+    border-radius:4px;
+    border: 1px solid lightgrey;
+}
+
+#taskTitle{
+    text-decoration: none;
+    color: cornflowerblue;
+    padding-top: 35px;
+    font-size: 2em;
+    font-weight: 200;
+    font-family: "Lato", "proxima-nova", "Helvetica Neue", Arial, sans-serif;
+}
+
+#taskDescriptions{
+    color: dimgrey;
+    text-decoration: none;
+    margin-top: -7px;
+    font-size: 1em;
+    font-weight: 100;
+    font-family: "Lato", "proxima-nova", "Helvetica Neue", Arial, sans-serif;
+}
+
+#taskDeadline{
+    float: right;
+    color: darkgrey;
+    margin-top: -30px;
+    padding-right: 40px;
+    font-size: 1.1em;
+    font-weight: 500;
+    font-family: "Lato", "proxima-nova", "Helvetica Neue", Arial, sans-serif;
+}
+
+
+
+
+
+                /* TASKDETAIL */
+                /* TASKDETAIL */
+                /* TASKDETAIL */
+
+.taskDetail{
+    margin: 65px 1%;
+    width: 98%;
+    height:500px;
+    border-radius:4px;
+    border:1px solid lightgrey;
+    background-color: white;
+    padding: 80px 100px;
+}
+
+.taskDetailTitle{
+    color: cornflowerblue;
+    font-size: 3em;
+    font-weight: 300;
+    font-family: "Lato", "proxima-nova", "Helvetica Neue", Arial, sans-serif;
+}
+
+.taskDeadline{
+    color: dimgrey;
+    float: right;
+    margin-top: -45px;
+    font-size: 1.3em;
+    font-weight: 300;
+    font-family: "Lato", "proxima-nova", "Helvetica Neue", Arial, sans-serif;
+}
+
+number{
+    padding-left: 10px;
+    font-size: 2em;
+    font-weight: 500;
+}
+
+.line{
+    width: 100%;
+    height: 2px;
+    border-radius: 2px;
+    margin: 20px auto;
+    opacity: 0.4;
+    background-color: lightgrey;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

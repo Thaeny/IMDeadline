@@ -30,6 +30,7 @@ if(!empty($_POST))
         $task->Listname = $_POST['listname'];
         $task->Coursename = $_POST['coursename'];
         $task->Info = $_POST['taskInfo'];
+        $task->Workhours = $_POST['workhours'];
 
 
         try{
@@ -100,10 +101,31 @@ if(!empty($_POST))
             <label for="taskname">Give your new task a specific name.</label><br><br><br>
             <textarea style="text-align: center; font-size: 1.1em; border: 1px solid lightgrey;" rows="1" cols="30" name="taskname" id="taskname" placeholder="Name your task here..."></textarea>
         </div>
+
         <br><br>
+
+
         <input type="date" name="date">
+
+
+        <input style="width: 70px;" placeholder="Hours" name="workhours" list="workhours">
+
+        <datalist id="workhours">
+            <option value="5">
+            <option value="10">
+            <option value="15">
+            <option value="20">
+            <option value="25">
+            <option value="30">
+            <option value="35">
+            <option value="40">
+            <option value="45">
+            <option value="+50">
+        </datalist>
         <br><br>
         <br><br>
+
+
         <input placeholder="Select a list" name="listname" list="lists">
         <datalist id="lists">
             <?php

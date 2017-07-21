@@ -13,6 +13,12 @@ spl_autoload_register(function($class){
     include_once("classes/" .  $class . ".class.php");
 });
 
+
+
+$loadAllTasks = new Tasks();
+$tasks = $loadAllTasks->getAllTasks();
+
+
 ?>
 
 <!doctype html>
@@ -70,6 +76,32 @@ spl_autoload_register(function($class){
             <div class="titleContainer">
                 <p>Task overview</p>
             </div>
+
+            <div class="taskContainer">
+                <?php foreach( $tasks as $task):  ?>
+                    <a href="task.php?id=<?php echo $task['taskId']; ?>">
+                        <div class="task">
+                        <p id="taskTitle"><?php echo $task['taskname']; ?></p><br>
+                        <p id="taskDescriptions"><?php echo $task['coursename']; ?> - <?php echo $task['listname']; ?></p>
+
+                        <p id="taskDeadline"><?php echo $task['deadline']; ?></p>
+                        <br><br>
+
+
+                        </div>
+                    </a>
+
+
+                <?php endforeach; ?>
+            </div>
+
+
+
+
+
+
+
+
 
         </div>
     </div>
