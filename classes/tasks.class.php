@@ -176,6 +176,19 @@ class Tasks
 
 
 
+    public function GetCourseTasks()
+    {
+        $db = Db::getInstance();
+
+        $waarde = $_GET['id'];
+        $stmt = $db->prepare("SELECT * FROM tasks AS t JOIN courses AS c ON(t.coursename = c.coursename) WHERE courseId = $waarde");
+
+
+        $stmt->execute();
+        $rResult = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $rResult;
+    }
 
 
 

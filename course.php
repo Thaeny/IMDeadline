@@ -13,11 +13,16 @@ spl_autoload_register(function($class){
     include_once("classes/" .  $class . ".class.php");
 });
 
-$course = new Courses();
-$courses = $course->GetCourses();
+// Checken of user ingelogd is als session...
+if(!isset($_SESSION['user'])) {
+    header('Location: login.php');
+    exit();
+} else {
+    //blabla
+}
 
-
-
+$courseTask =  new Tasks();
+$courseTasks = $courseTask->GetCourseTasks();
 
 ?>
 
@@ -77,19 +82,40 @@ $courses = $course->GetCourses();
 
     <div class="wall">
         <div class="titleContainer">
-            <p>Lists overview</p>
+            <p>
+                <?php
+                foreach($_GET as $key => $value):?>
+                    <?php
+                    $conn = Db::getInstance();
+                    $query = $conn->query("SELECT * FROM courses WHERE (courseId = '".$value."')");
+                    while($r = $query->fetch()) {
+                        echo $r['coursename'];
+                    }
+                    ?>
+                <?php endforeach; ?>
+            </p>
+
+
+
         </div>
 
-        <div class="listContainer">
-            <?php foreach( $courses as $c):  ?>
+        <div class="taskContainer">
 
-                <div class="lijst">
+            <?php foreach( $courseTasks as $c):  ?>
+                <a href="task.php?id=<?php echo $c['taskId']; ?>">
+                    <div class="task">
+                        <p id="taskTitle"><?php echo $c['taskname']; ?></p><br>
+                        <p id="taskDescriptions"><?php echo $c['coursename']; ?> - <?php echo $c['listname']; ?></p>
 
-                    <h3><a href="course.php?id=<?php echo $c['courseId']; ?> "><?php echo $c['coursename']; ?></a></h3>
+                        <p id="taskDeadline"><?php echo $c['deadline']; ?></p>
+                        <br><br>
 
-                </div>
+
+                    </div>
+                </a>
+
+
             <?php endforeach; ?>
-
 
 
         </div>
