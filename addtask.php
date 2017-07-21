@@ -27,6 +27,10 @@ if(!empty($_POST))
         $task->Taskname = $_POST['taskname'];
         $task->Username = $_SESSION['user'];
         $task->Deadline = $_POST['date'];
+        $task->Listname = $_POST['listname'];
+        $task->Coursename = $_POST['coursename'];
+        $task->Info = $_POST['taskInfo'];
+
 
         try{
             $task->SaveTask();
@@ -99,10 +103,40 @@ if(!empty($_POST))
         <br><br>
         <input type="date" name="date">
         <br><br>
+        <br><br>
+        <input placeholder="Select a list" name="listname" list="lists">
+        <datalist id="lists">
+            <?php
+            $conn = Db::getInstance();
+            $query = $conn->query("SELECT * FROM lists ");
+            while($l = $query->fetch()) {
+                echo '<option value="'.$l['listname'].'">';
+
+            }
+            ?>
+        </datalist>
+
+        <input placeholder="Select a course" name="coursename" list="courses">
+        <datalist id="courses">
+            <?php
+            $conn = Db::getInstance();
+            $query = $conn->query("SELECT * FROM courses ");
+            while($c = $query->fetch()) {
+                echo '<option value="'.$c['coursename'].'">';
+
+            }
+            ?>
+        </datalist>
+
+        <br><br>
+            <p>Info:</p>
+            <textarea name="taskInfo" rows="5" cols="40" id="taskInfo"></textarea>
+
+        <br><br><br>
 
         <div class="createTaskBTN">
             <input type="hidden" name="action" value="newTask" />
-            <input class="btn" id="createTaskBTN" type="submit" value="Create Task" name="submit">
+            <input class="btn" style="color: white;background-color: cornflowerblue" id="createTaskBTN" type="submit" value="Create Task" name="submit">
         </div>
 
     </form>

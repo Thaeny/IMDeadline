@@ -45,6 +45,7 @@ spl_autoload_register(function($class){
                             <span class="glyphicon-plus"></span></button>
                         <ul class="dropdown-menu">
                             <li><a href="addlist.php">Add a list</a></li>
+                            <li><a href="addtask.php">Add a task</a></li>
                         </ul>
                     </div>
                 </li>
