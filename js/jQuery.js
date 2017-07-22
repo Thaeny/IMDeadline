@@ -4,6 +4,33 @@
 
 
 
+
+
+
+
+
+$("#btnSubmit").on("click", function (e) {
+    "use strict";
+    // message ophalen uit tekstveld
+    var message = $("#comment").val();
+
+    // Ajax call: verzenden naar php bestand om query uit te voeren
+    $.post("ajax/addComment.php", {message: message})
+        .done(function (response) {
+
+        });
+    e.preventDefault();
+});
+
+
+
+
+
+
+
+
+
+
     /* DELETE LIST */
 
     var deleteVar = document.getElementsByClassName("btnDeleteList");

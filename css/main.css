@@ -248,9 +248,9 @@ a:hover, a:visited, a:link, a:active
                 /* TASKDETAIL */
 
 .taskDetail{
-    margin: 65px 1%;
+    margin: 65px 1% 100px 1%;
     width: 98%;
-    height:500px;
+    height: auto;
     border-radius:4px;
     border:1px solid lightgrey;
     background-color: white;
@@ -311,6 +311,18 @@ info{
     font-size: 1.1em;
     font-weight: 300;
     font-family: "Lato", "proxima-nova", "Helvetica Neue", Arial, sans-serif;
+}
+
+
+
+
+
+                /* COMMENTS */
+                /* COMMENTS */
+                /* COMMENTS */
+
+.commentSection{
+    margin-top:100px;
 }
 
 

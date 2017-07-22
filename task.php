@@ -15,10 +15,34 @@ spl_autoload_register(function($class){
 
 
 $task = new Tasks();
-
 $taskID = $_GET['id'];
-
 $taskData = $task->GetSingleTask($taskID);
+
+
+$comment = new Comment();
+
+if(!empty($_POST['comment']))
+{
+    if ($_POST['action'] === "newComment") {
+
+        $comment->Comment = $_POST['comment'];
+        $comment->TaskId = $_GET['id'];
+        $comment->Username = $_SESSION['user'];
+
+        try{
+            $comment->SaveComment();
+        }
+        catch (Exception $e)
+        {
+            $feedback = $e->getMessage();
+        }
+    }
+}
+
+
+
+
+
 
 
 ?>
@@ -91,14 +115,20 @@ $taskData = $task->GetSingleTask($taskID);
                               <br><br><br>
                               <info>Info: <br><br> ' . $data['info'] . '</info>
                           </p>';
+                    }
+                ?>
+            </p>
+
+                <div class="commentSection">
+
+                    <textarea placeholder="Share your thought..." name="comment" id="comment" cols="60" rows="5"></textarea>
+                    <input type="hidden" name="action" value="newComment" />
+                    <button id="btnSubmit" type="submit" value="Share" >Share</button>
 
 
 
+                </div>
 
-                }
-                   ?>
-
-                </p>
         </div>
 
 
