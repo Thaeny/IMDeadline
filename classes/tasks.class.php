@@ -192,5 +192,16 @@ class Tasks
 
 
 
+
+    public function DeleteTask($id) {
+        $value = $id;
+        $conn = Db::getInstance();
+
+        $stmt = $conn->prepare('DELETE FROM tasks WHERE taskId = :taskId');
+        $stmt->bindValue(":taskId", $value );
+        $stmt->execute();
+    }
+
+
 }
 

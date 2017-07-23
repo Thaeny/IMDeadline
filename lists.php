@@ -90,7 +90,7 @@ $lists = $list->GetLists();
 
 
                     <?php if($_SESSION['user'] == $lijst['username']): ?>
-                        <a href="#" class="btnDeleteList" data-id=<?php echo $lijst['listId'] ?>></a>
+                        <a href="#" class="btnDeleteList" data-id="<?php echo $lijst['listId'] ?>"></a>
                     <?php endif; ?>
 
 

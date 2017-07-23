@@ -77,7 +77,7 @@ $courses = $course->GetCourses();
 
     <div class="wall">
         <div class="titleContainer">
-            <p>Lists overview</p>
+            <p>Course overview</p>
         </div>
 
         <div class="listContainer">
