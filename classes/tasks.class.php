@@ -203,5 +203,31 @@ class Tasks
     }
 
 
+
+
+    public function DaysRemaining($value) {
+
+
+        $conn = Db::getInstance();
+        $datumhalen = $conn->prepare('SELECT deadline FROM tasks WHERE taskId = :taskId');
+        $datumhalen->bindValue("taskId", $value );
+        $datumhalen->execute();
+        $datum = $datumhalen->fetch(PDO::FETCH_ASSOC);
+
+        $cur_time 	= time();
+        $time_elapsed 	= $cur_time - strtotime($datum["deadline"]);
+        $days = round($time_elapsed / 86400 );
+
+        /* -teken wegdoen */
+        $daysClear = ltrim($days, '-');
+
+        return $daysClear;
+
+
+    }
+
+
+
+
 }
 

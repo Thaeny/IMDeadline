@@ -107,7 +107,15 @@ $listTasks = $listTask->GetListTasks();
                         <p id="taskTitle"><?php echo $t['taskname']; ?></p><br>
                         <p id="taskDescriptions"><?php echo $t['coursename']; ?> - <?php echo $t['listname']; ?></p>
 
+                            <?php if($_SESSION['user'] == $t['username']): ?>
+                                <a href="#" class="btnDeleteTask" data-id="<?php echo $t['taskId'] ?>"></a>
+                            <?php endif; ?>
+
                         <p id="taskDeadline"><?php echo $t['deadline']; ?></p>
+
+                        <p id="daysRemaining"><?php echo $listTask->DaysRemaining($t['taskId']); ?></p>
+                        <p id="daysText">days left</p>
+
                         <br><br>
 
 

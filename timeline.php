@@ -19,6 +19,10 @@ $loadAllTasks = new Tasks();
 $tasks = $loadAllTasks->getAllTasks();
 
 
+
+
+
+
 ?>
 
 <!doctype html>
@@ -89,6 +93,11 @@ $tasks = $loadAllTasks->getAllTasks();
                             <?php endif; ?>
 
                         <p id="taskDeadline"><?php echo $task['deadline']; ?></p>
+
+
+                            <p id="daysRemaining"><?php echo $loadAllTasks->DaysRemaining($task['taskId']); ?></p>
+                            <p id="daysText">days left</p>
+
                         <br><br>
 
 

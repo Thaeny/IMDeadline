@@ -81,7 +81,7 @@ class Lists
     {
         $db = Db::getInstance();
 
-        $stmt = $db->prepare("SELECT * FROM lists ");
+        $stmt = $db->prepare("SELECT * FROM lists ORDER BY listname ");
         $stmt->execute();
         $rResult = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
