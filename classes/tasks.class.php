@@ -114,19 +114,33 @@ class Tasks
         */
     {
 
-        $db = Db::getInstance();
+        $conn = Db::getInstance();
 
-        $stmt = $db->prepare("INSERT INTO tasks (taskname, username, deadline, listname, coursename, info, workhours) VALUES (:taskname, :username, :deadline, :listname, :coursename, :info, :workhours)");
-        $stmt->bindValue(':taskname', $this->m_sTaskname, PDO::PARAM_STR);
-        $stmt->bindValue(":username",$_SESSION['user']);
-        $stmt->bindValue(':deadline', $this->m_dDeadline, PDO::PARAM_STR);
-        $stmt->bindValue(':listname', $this->m_sListname, PDO::PARAM_STR);
-        $stmt->bindValue(':coursename', $this->m_sCoursename, PDO::PARAM_STR);
-        $stmt->bindValue(':info', $this->m_sInfo, PDO::PARAM_STR);
-        $stmt->bindValue(':workhours', $this->m_sWorkhours, PDO::PARAM_STR);
+        $statement = $conn->prepare("SELECT taskname FROM tasks WHERE taskname = :taskname");
+        $statement->bindValue(':taskname', $this->m_sTaskname, PDO::PARAM_STR);
+        $statement->execute();
 
-        $stmt->execute();
-        return $db->lastInsertId();
+        if($statement->rowCount() > 0){
+
+            $error = "Taskname already in use";
+            return $error;
+        }
+        else {
+
+            $db = Db::getInstance();
+            $stmt = $db->prepare("INSERT INTO tasks (taskname, username, deadline, listname, coursename, info, workhours) VALUES (:taskname, :username, :deadline, :listname, :coursename, :info, :workhours)");
+            $stmt->bindValue(':taskname', $this->m_sTaskname, PDO::PARAM_STR);
+            $stmt->bindValue(":username", $_SESSION['user']);
+            $stmt->bindValue(':deadline', $this->m_dDeadline, PDO::PARAM_STR);
+            $stmt->bindValue(':listname', $this->m_sListname, PDO::PARAM_STR);
+            $stmt->bindValue(':coursename', $this->m_sCoursename, PDO::PARAM_STR);
+            $stmt->bindValue(':info', $this->m_sInfo, PDO::PARAM_STR);
+            $stmt->bindValue(':workhours', $this->m_sWorkhours, PDO::PARAM_STR);
+
+            $stmt->execute();
+            return $db->lastInsertId();
+
+        }
 
     }
 
