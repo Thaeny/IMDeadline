@@ -17,31 +17,23 @@ spl_autoload_register(function($class){
 $task = new Tasks();
 $taskID = $_GET['id'];
 $taskData = $task->GetSingleTask($taskID);
+$taskDays = $task->DaysRemaining($taskID);
 
+$activity = new Comment();
 
-$comment = new Comment();
-
-if(!empty($_POST['comment']))
+//controleer of er een update wordt verzonden
+if(!empty($_POST['activitymessage']))
 {
-    if ($_POST['action'] === "newComment") {
-
-        $comment->Comment = $_POST['comment'];
-        $comment->TaskId = $_GET['id'];
-        $comment->Username = $_SESSION['user'];
-
-        try{
-            $comment->SaveComment();
-        }
-        catch (Exception $e)
-        {
-            $feedback = $e->getMessage();
-        }
+    $activity->Text = $_POST['activitymessage'];
+    try
+    {
+        $activity->Save();
+    }
+    catch (Exception $e)
+    {
+        $feedback = $e->getMessage();
     }
 }
-
-
-
-
 
 
 
@@ -104,7 +96,7 @@ if(!empty($_POST['comment']))
 
                     echo '<p class="taskDetailTitle">' . $data['taskname'] . '</p>';
 
-                    echo '<p class="taskDeadline"> remaining days :  <number>3</number></p>';
+                    echo '<p class="taskDeadline"> remaining days :  <number> ' . $taskDays  . '   </number></p>';
 
                         echo '<div class="line"></div>';
 
@@ -119,11 +111,18 @@ if(!empty($_POST['comment']))
                 ?>
             </p>
 
-                <div class="commentSection">
 
-                    <textarea placeholder="Share your thought..." name="comment" id="comment" cols="60" rows="5"></textarea>
-                    <input type="hidden" name="action" value="newComment" />
-                    <button id="btnSubmit" type="submit" value="Share" >Share</button>
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -148,6 +147,7 @@ if(!empty($_POST['comment']))
 
 
 
+<script src="js/jQuery.js"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="bootstrap/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>

@@ -18,6 +18,13 @@ if(!isset($_SESSION['user'])) {
     exit();
 }
 
+if (empty($_POST["name"])) {
+    $nameErr = "Name is required";
+}
+
+
+
+
 $task = new Tasks();
 
 if(!empty($_POST))
@@ -98,7 +105,8 @@ if(!empty($_POST))
 
 
         <div class="addTaskForm">
-            <label for="taskname">Give your new task a specific name.</label><br><br><br>
+            <label for="taskname">Give your new task a specific name.</label>  <span class="error">* <?php echo $nameErr;?></span>
+            <br><br><br>
             <textarea style="text-align: center; font-size: 1.1em; border: 1px solid lightgrey;" rows="1" cols="30" name="taskname" id="taskname" placeholder="Name your task here..."></textarea>
         </div>
 

@@ -94,9 +94,8 @@ $tasks = $loadAllTasks->getAllTasks();
 
                         <p id="taskDeadline"><?php echo $task['deadline']; ?></p>
 
-
-                            <p id="daysRemaining"><?php echo $loadAllTasks->DaysRemaining($task['taskId']); ?></p>
-                            <p id="daysText">days left</p>
+                                <p id="daysRemaining"><?php echo $loadAllTasks->DaysRemaining($task['taskId']); ?></p>
+                                <p id="daysText">days left</p>
 
                         <br><br>
 

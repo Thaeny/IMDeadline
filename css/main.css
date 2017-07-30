@@ -156,6 +156,10 @@ a:hover, a:visited, a:link, a:active
     transition-duration: 0.3s;
 }
 
+.lijst:hover{
+    border: 1px solid cornflowerblue;
+}
+
 .lijst a{
     text-align: center;
     color: cornflowerblue;
@@ -211,6 +215,10 @@ a:hover, a:visited, a:link, a:active
     border: 1px solid lightgrey;
 }
 
+    .task:hover{
+        border: 1px solid cornflowerblue;
+    }
+
 #taskTitle{
     text-decoration: none;
     color: cornflowerblue;
@@ -246,7 +254,8 @@ a:hover, a:visited, a:link, a:active
     font-family: "Lato", "proxima-nova", "Helvetica Neue", Arial, sans-serif;
     float: right;
     margin-top: -75px;
-    margin-right: 65px;
+    text-align: center;
+    width:150px;
 }
 
 #daysText{
@@ -256,9 +265,10 @@ a:hover, a:visited, a:link, a:active
     font-family: "Lato", "proxima-nova", "Helvetica Neue", Arial, sans-serif;
     float: right;
     margin-top: -15px;
-    margin-right: 54px;
-}
+    text-align: center;
+    width:150px;
 
+}
 
 .btnDeleteTask{
     opacity: 0.2;

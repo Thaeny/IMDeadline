@@ -148,8 +148,13 @@ class Tasks
 
 
     public function getAllTasks () {
+
+        $date = date("Y-m-d");
+
+
         $conn = Db::getInstance();
-        $statement = $conn->prepare('SELECT * FROM tasks ORDER BY deadline asc');
+        $statement = $conn->prepare('SELECT * FROM tasks WHERE deadline > :deadline ORDER BY deadline asc');
+        $statement->bindValue(':deadline', $date);
         $statement->execute();
         $tasks = $statement->fetchAll();
         return $tasks;
@@ -177,9 +182,12 @@ class Tasks
     public function GetListTasks()
     {
         $db = Db::getInstance();
+        $date = date("Y-m-d");
+
 
         $waarde = $_GET['id'];
-        $stmt = $db->prepare("SELECT * FROM tasks AS t JOIN lists AS l ON(t.listname = l.listname) WHERE listId = $waarde");
+        $stmt = $db->prepare("SELECT * FROM tasks AS t JOIN lists AS l ON(t.listname = l.listname) WHERE listId = $waarde AND deadline > :deadline ORDER BY deadline asc");
+        $stmt->bindValue(':deadline', $date);
 
 
         $stmt->execute();
@@ -194,8 +202,11 @@ class Tasks
     {
         $db = Db::getInstance();
 
+        $date = date("Y-m-d");
+
         $waarde = $_GET['id'];
-        $stmt = $db->prepare("SELECT * FROM tasks AS t JOIN courses AS c ON(t.coursename = c.coursename) WHERE courseId = $waarde");
+        $stmt = $db->prepare("SELECT * FROM tasks AS t JOIN courses AS c ON(t.coursename = c.coursename) WHERE courseId = $waarde AND deadline > :deadline ORDER BY deadline asc");
+        $stmt->bindValue(':deadline', $date);
 
 
         $stmt->execute();
@@ -221,6 +232,7 @@ class Tasks
 
     public function DaysRemaining($value) {
 
+        $cur_time 	= time();
 
         $conn = Db::getInstance();
         $datumhalen = $conn->prepare('SELECT deadline FROM tasks WHERE taskId = :taskId');
@@ -228,7 +240,6 @@ class Tasks
         $datumhalen->execute();
         $datum = $datumhalen->fetch(PDO::FETCH_ASSOC);
 
-        $cur_time 	= time();
         $time_elapsed 	= $cur_time - strtotime($datum["deadline"]);
         $days = round($time_elapsed / 86400 );
 
