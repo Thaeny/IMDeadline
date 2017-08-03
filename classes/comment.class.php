@@ -60,6 +60,48 @@ class Comment
     }
 
 
+    public function SaveComment($id, $user)
+        /*
+        De methode Save dient om een nieuwe comment te bewaren in onze databank.
+        */
+    {
+
+
+        $db = Db::getInstance();
+
+        $stmt = $db->prepare("INSERT INTO comments (comment, taskId, username) VALUES (:comment, :taskId, :username)");
+        $stmt->bindValue(':comment', $this->m_sComment, PDO::PARAM_STR);
+        $stmt->bindValue(':taskId', $id);
+        $stmt->bindValue(':username', $user);
+        $stmt->execute();
+        return $db->lastInsertId();
+
+    }
+
+
+    public function GetComments($taskID)
+    {
+        $db = Db::getInstance();
+
+        $stmt = $db->query("SELECT * FROM comments WHERE taskId = $taskID");
+        $stmt->execute();
+
+        $rResult = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $rResult;
+    }
+
+    public function RemoveComment() {
+        $db = Db::getInstance();
+        $stmt = $db->prepare("DELETE FROM comments WHERE commentId = :commentId");
+        $stmt->bindValue(':commentId', $this->m_iCommentId, PDO::PARAM_INT);
+        $stmt->execute();
+    }
+
+
+
+
+
+
 
 
 }

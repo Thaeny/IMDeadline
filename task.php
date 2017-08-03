@@ -16,26 +16,46 @@ spl_autoload_register(function($class){
 
 $task = new Tasks();
 $taskID = $_GET['id'];
+$user = $_SESSION['user'];
 $taskData = $task->GetSingleTask($taskID);
 $taskDays = $task->DaysRemaining($taskID);
 
-$activity = new Comment();
+
+$comment = new Comment();
 
 //controleer of er een update wordt verzonden
-if(!empty($_POST['activitymessage']))
+if(!empty($_POST))
 {
-    $activity->Text = $_POST['activitymessage'];
-    try
-    {
-        $activity->Save();
+    if($_POST['action'] === "nieuweActivity") {
+        $comment->Comment = $_POST['activitymessage'];
+        $id = $_GET['id'];
+        $user = $_SESSION['user'];
+
+        try
+        {
+            $comment->SaveComment($id, $user);
+        }
+        catch (Exception $e)
+        {
+            $feedback = $e->getMessage();
+        }
     }
-    catch (Exception $e)
-    {
-        $feedback = $e->getMessage();
+
+    if($_POST['action']=== "removeComment") {
+        $comment->CommentId = $_POST['id'];
+
+        try {
+            $comment->RemoveComment();
+        } catch (Exception $e) {
+            $feedback = $e->getMessage();
+        }
     }
+
 }
 
 
+//altijd alle laatste activiteiten ophalen
+$allComments = $comment->GetComments($taskID);
 
 ?>
 
@@ -118,21 +138,39 @@ if(!empty($_POST['activitymessage']))
 
 
 
+            <form method="post" action="">
+                <div class="statusupdates">
+                    <?php echo $user ?>
+                    <input type="text" placeholder="What's on your mind?" id="activitymessage" name="activitymessage" />
+                    <input type="hidden" name="action" value="nieuweActivity" />
+                    <input id="btnSubmit" type="submit" value="Share" />
+
+                    <ul id="listupdates">
 
 
+                        <?php
+                        if(count($allComments) > 0)
+                        {
+                            foreach($allComments as $key=>$singleComment)
+                            {
+                                echo "<li id='". $singleComment['commentId'] ."'><h2>". $singleComment['username'] ." </h2> ". $singleComment['comment'] ."<br></li>";
+                            }
+                        }
+                        else
+                        {
+                            echo "<li>Waiting for first status update</li>";
+                        }
+                        ?>
 
 
-
-
-
-
-
-
-
+                    </ul>
 
                 </div>
+            </form>
 
         </div>
+
+    </div>
 
 
 
