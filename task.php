@@ -103,14 +103,18 @@ if(!empty($_POST['activitymessage']))
                     echo '<p class="taskinf">
                               <inf>List : ' . $data['listname'] . '</inf>
                               <inf>Course : ' . $data['coursename'] . '</inf>
+                              <inf><a href="uploads/' . $data['filename'] . ' "> ' . $data['filename'] . ' </a></inf>
                               <inf2>Creator : ' . $data['username'] . '</inf2>
                               <br><br><br>
                               <info>Info: <br><br> ' . $data['info'] . '</info>
                           </p>';
-                    }
+
+
+                }
+
+
                 ?>
             </p>
-
 
 
 

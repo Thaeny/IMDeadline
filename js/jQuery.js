@@ -2,7 +2,6 @@
  * Created by thomasthaens on 13/07/17.
  */
 
-$(document).ready(function(){
 
 
 
@@ -55,5 +54,5 @@ $(document).ready(function(){
 
 
 
-});
+
 

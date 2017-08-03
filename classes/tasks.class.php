@@ -20,6 +20,7 @@ class Tasks
     private $m_sListname;
     private $m_sInfo;
     private $m_sWorkhours;
+    private $m_sFilename;
 
 
 
@@ -59,6 +60,11 @@ class Tasks
             case "Workhours":
                 $this->m_sWorkhours = $p_vValue;
                 break;
+
+            case "Filename":
+                $this->m_sFilename = $p_vValue;
+                break;
+
         }
     }
 
@@ -100,6 +106,10 @@ class Tasks
                 $vResult = $this->m_sWorkhours;
                 break;
 
+            case "Filename":
+                $vResult = $this->m_sFilename;
+                break;
+
         }
         return $vResult;
     }
@@ -128,7 +138,7 @@ class Tasks
         else {
 
             $db = Db::getInstance();
-            $stmt = $db->prepare("INSERT INTO tasks (taskname, username, deadline, listname, coursename, info, workhours) VALUES (:taskname, :username, :deadline, :listname, :coursename, :info, :workhours)");
+            $stmt = $db->prepare("INSERT INTO tasks (taskname, username, deadline, listname, coursename, info, workhours, filename) VALUES (:taskname, :username, :deadline, :listname, :coursename, :info, :workhours, :filename)");
             $stmt->bindValue(':taskname', $this->m_sTaskname, PDO::PARAM_STR);
             $stmt->bindValue(":username", $_SESSION['user']);
             $stmt->bindValue(':deadline', $this->m_dDeadline, PDO::PARAM_STR);
@@ -136,6 +146,7 @@ class Tasks
             $stmt->bindValue(':coursename', $this->m_sCoursename, PDO::PARAM_STR);
             $stmt->bindValue(':info', $this->m_sInfo, PDO::PARAM_STR);
             $stmt->bindValue(':workhours', $this->m_sWorkhours, PDO::PARAM_STR);
+            $stmt->bindValue(':filename', $this->m_sFilename, PDO::PARAM_STR);
 
             $stmt->execute();
             return $db->lastInsertId();

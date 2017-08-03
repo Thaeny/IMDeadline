@@ -38,6 +38,7 @@ if(!empty($_POST))
         $task->Coursename = $_POST['coursename'];
         $task->Info = $_POST['taskInfo'];
         $task->Workhours = $_POST['workhours'];
+        $task->Filename = $_FILES["fileToUpload"]["name"];
 
 
         try{
@@ -50,6 +51,27 @@ if(!empty($_POST))
         }
     }
 }
+
+
+
+
+
+
+
+
+$target_dir = "uploads/";
+$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+$uploadOk = 1;
+$fileType = pathinfo($target_file,PATHINFO_EXTENSION);
+
+
+    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+        echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+    } else {
+        $errormsg = "niet goed";
+    }
+
+
 
 
 
@@ -101,11 +123,11 @@ if(!empty($_POST))
 <div class="main">
 
 
-    <form style="padding-top: 200px; text-align: center;" action="" method="post" enctype="multipart/form-data">
+    <form style="padding-top: 170px; text-align: center;" action="" method="post" enctype="multipart/form-data">
 
 
         <div class="addTaskForm">
-            <label for="taskname">Give your new task a specific name.</label>  <span class="error">* <?php echo $nameErr;?></span>
+            <label for="taskname">Give your new task a specific name.</label>
             <br><br><br>
             <textarea style="text-align: center; font-size: 1.1em; border: 1px solid lightgrey;" rows="1" cols="30" name="taskname" id="taskname" placeholder="Name your task here..."></textarea>
         </div>
@@ -131,7 +153,15 @@ if(!empty($_POST))
             <option value="+50">
         </datalist>
         <br><br>
+
+        <br>
+
+        Select image to upload: <br><br>
+        <input style="margin:  0 auto;" type="file" name="fileToUpload" id="fileToUpload">
+
+
         <br><br>
+
 
 
         <input placeholder="Select a list" name="listname" list="lists">
@@ -168,7 +198,7 @@ if(!empty($_POST))
             <input type="hidden" name="action" value="newTask" />
             <input class="btn" style="color: white;background-color: cornflowerblue" id="createTaskBTN" type="submit" value="Create Task" name="submit">
         </div>
-
+        <?php $errormsg ?>
     </form>
 
 

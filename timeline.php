@@ -83,9 +83,9 @@ $tasks = $loadAllTasks->getAllTasks();
 
             <div class="taskContainer">
                 <?php foreach( $tasks as $task):  ?>
-                    <a href="task.php?id=<?php echo $task['taskId']; ?>">
+
                         <div class="task">
-                        <p id="taskTitle"><?php echo $task['taskname']; ?></p><br>
+                            <p id="taskTitle"><a href="task.php?id=<?php echo $task['taskId']; ?>"><?php echo $task['taskname']; ?></a></p><br>
                         <p id="taskDescriptions"><?php echo $task['coursename']; ?> - <?php echo $task['listname']; ?></p>
 
                             <?php if($_SESSION['user'] == $task['username']): ?>
@@ -101,7 +101,7 @@ $tasks = $loadAllTasks->getAllTasks();
 
 
                         </div>
-                    </a>
+
 
 
                 <?php endforeach; ?>
