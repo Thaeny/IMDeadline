@@ -12,6 +12,7 @@ $errormessage = "";
 spl_autoload_register(function($class){
     include_once("classes/" .  $class . ".class.php");
 });
+include_once("classes/tasks.class.php");
 
 
 $task = new Tasks();
@@ -143,7 +144,7 @@ $allComments = $comment->GetComments($taskID);
                     <?php echo $user ?>
                     <input type="text" placeholder="What's on your mind?" id="activitymessage" name="activitymessage" />
                     <input type="hidden" name="action" value="nieuweActivity" />
-                    <input id="btnSubmit" type="submit" value="Share" />
+                    <input id="btnSubmitComment" type="submit" value="Share" />
 
                     <ul id="listupdates">
 
@@ -188,10 +189,9 @@ $allComments = $comment->GetComments($taskID);
 
 
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <script src="js/jQuery.js"></script>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="bootstrap/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </body>
 </html>
