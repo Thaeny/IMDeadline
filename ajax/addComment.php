@@ -2,20 +2,20 @@
 spl_autoload_register(function ($class_name) {
     include '../classes/' .$class_name . '.class.php';
 });
-
 $comment = new Comment();
 
 //controleer of er een update wordt verzonden
 if(!empty($_POST['message']))
 {
     $comment->Comment = $_POST['message'];
+    $comment->TaskId = $_POST['taskId'];
+    $comment->Username = $_POST['username'];
     try
     {
         $id = $comment->SaveComment();
         $response['id'] = $id;
         $response['status'] = 'succes';
         $response['message'] = 'Update succesvol';
-
     }
     catch (Exception $e)
     {

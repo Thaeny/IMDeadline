@@ -47,18 +47,31 @@ $( document ).ready(function() {
     }
 
 
-// klikken op knop
-    $("#btnSubmitComment").on("click", function (e) {
+
+
+
+
+
+
+
+// COMMENTS
+    $("#btnSubmit").on("click", function(e){
         "use strict";
         // message ophalen uit tekstveld
         var message = $("#activitymessage").val();
+        var taskId = $("#taskId").val();
+        var username = $("#username").val();
 
         // Ajax call: verzenden naar php bestand om query uit te voeren
-        $.post("ajax/addComment.php", {message: message})
-            .done(function (response) {
-                if (response.status === 'succes') {
+        $.post("ajax/addComment.php", {
+            message : message,
+            taskId: taskId,
+            username: username
+        })
+            .done(function( response ){
+                if(response.status === 'succes') {
                     // update tonen
-                    var li = "<li style='display: none' id='" + response.id + "'><h2>Christophe </h2>" + message + "<br></li>";
+                    var li = "<li style='display: none' id='" + response.id + "'><h2>" + username +  " </h2>" + message + "<br><form method='post' action=''><input type='hidden' name='action' value='removeActivity' /><input type='hidden' name='id' value='" + response.id +"' /><input type='image' src='img/soft_grey_action_delete.png' class='btnRemove' id='btnRemove" + response.id +"' /></form></li>";
                     $('#listupdates').prepend(li);
                     $("#listupdates li:first-child").slideDown();
                     // invoerveld opnieuw leeg maken
@@ -67,6 +80,5 @@ $( document ).ready(function() {
             });
         e.preventDefault();
     });
-
 
 });

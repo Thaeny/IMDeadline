@@ -60,7 +60,7 @@ class Comment
     }
 
 
-    public function SaveComment($id, $user)
+    public function SaveComment()
         /*
         De methode Save dient om een nieuwe comment te bewaren in onze databank.
         */
@@ -71,8 +71,8 @@ class Comment
 
         $stmt = $db->prepare("INSERT INTO comments (comment, taskId, username) VALUES (:comment, :taskId, :username)");
         $stmt->bindValue(':comment', $this->m_sComment, PDO::PARAM_STR);
-        $stmt->bindValue(':taskId', $id);
-        $stmt->bindValue(':username', $user);
+        $stmt->bindValue(":taskId", $this->m_sTaskId);
+        $stmt->bindValue(":username", $this->m_sUsername);
         $stmt->execute();
         return $db->lastInsertId();
 

@@ -29,29 +29,17 @@ if(!empty($_POST))
 {
     if($_POST['action'] === "nieuweActivity") {
         $comment->Comment = $_POST['activitymessage'];
-        $id = $_GET['id'];
-        $user = $_SESSION['user'];
-
+        $comment->TaskId = $taskID;
+        $comment->Username = $user;
         try
         {
-            $comment->SaveComment($id, $user);
+            $comment->SaveComment();
         }
         catch (Exception $e)
         {
             $feedback = $e->getMessage();
         }
     }
-
-    if($_POST['action']=== "removeComment") {
-        $comment->CommentId = $_POST['id'];
-
-        try {
-            $comment->RemoveComment();
-        } catch (Exception $e) {
-            $feedback = $e->getMessage();
-        }
-    }
-
 }
 
 
@@ -141,20 +129,21 @@ $allComments = $comment->GetComments($taskID);
 
             <form method="post" action="">
                 <div class="statusupdates">
-                    <?php echo $user ?>
+                    <h1>Christophe</h1>
                     <input type="text" placeholder="What's on your mind?" id="activitymessage" name="activitymessage" />
                     <input type="hidden" name="action" value="nieuweActivity" />
-                    <input id="btnSubmitComment" type="submit" value="Share" />
+
+                    <input type="hidden" name="taskId" id="taskId" value="<?php echo $_GET['id'] ?>">
+                    <input type="hidden" name="username" id="username" value="<?php echo $_SESSION['user'] ?>">
+                    <input id="btnSubmit" type="submit" value="Share" />
 
                     <ul id="listupdates">
-
-
                         <?php
                         if(count($allComments) > 0)
                         {
                             foreach($allComments as $key=>$singleComment)
                             {
-                                echo "<li id='". $singleComment['commentId'] ."'><h2>". $singleComment['username'] ." </h2> ". $singleComment['comment'] ."<br></li>";
+                                echo "<li id='". $singleComment['commentId'] ."'><h2>" . $singleComment['username'] . "</h2> ". $singleComment['comment'] ."<br></li>";
                             }
                         }
                         else
@@ -162,8 +151,6 @@ $allComments = $comment->GetComments($taskID);
                             echo "<li>Waiting for first status update</li>";
                         }
                         ?>
-
-
                     </ul>
 
                 </div>
@@ -188,10 +175,11 @@ $allComments = $comment->GetComments($taskID);
 
 
 
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+
 <script src="js/jQuery.js"></script>
+
 <script src="bootstrap/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </body>
 </html>
