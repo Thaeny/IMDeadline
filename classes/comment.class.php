@@ -83,7 +83,7 @@ class Comment
     {
         $db = Db::getInstance();
 
-        $stmt = $db->query("SELECT * FROM comments WHERE taskId = $taskID");
+        $stmt = $db->query("SELECT * FROM comments WHERE taskId = $taskID ORDER BY commentId desc");
         $stmt->execute();
 
         $rResult = $stmt->fetchAll(PDO::FETCH_ASSOC);

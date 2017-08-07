@@ -127,9 +127,12 @@ $allComments = $comment->GetComments($taskID);
 
 
 
-            <form method="post" action="">
+
+
+            <div class="line2"></div>
+
+            <form class="commentsForm" method="post" action="">
                 <div class="statusupdates">
-                    <h1>Christophe</h1>
                     <input type="text" placeholder="What's on your mind?" id="activitymessage" name="activitymessage" />
                     <input type="hidden" name="action" value="nieuweActivity" />
 
@@ -143,7 +146,7 @@ $allComments = $comment->GetComments($taskID);
                         {
                             foreach($allComments as $key=>$singleComment)
                             {
-                                echo "<li id='". $singleComment['commentId'] ."'><h2>" . $singleComment['username'] . "</h2> ". $singleComment['comment'] ."<br></li>";
+                                echo "<li class='commentBox' id='". $singleComment['commentId'] ."'><p class='commentUsername'>" . ucfirst($singleComment['username']) . "</p> <p class='commentText'> ". $singleComment['comment'] ."</p></li>";
                             }
                         }
                         else

@@ -71,7 +71,17 @@ $( document ).ready(function() {
             .done(function( response ){
                 if(response.status === 'succes') {
                     // update tonen
-                    var li = "<li style='display: none' id='" + response.id + "'><h2>" + username +  " </h2>" + message + "<br><form method='post' action=''><input type='hidden' name='action' value='removeActivity' /><input type='hidden' name='id' value='" + response.id +"' /><input type='image' src='img/soft_grey_action_delete.png' class='btnRemove' id='btnRemove" + response.id +"' /></form></li>";
+                    var li = "<li class='commentBox' style='display: none' id='" + response.id + "'>" +
+
+                        "<p style='color: blue;' id='commentUsername'>" + username +  " </p>"
+
+                         + message + "</li>";
+                    
+                    
+                    
+                    
+                    
+                    
                     $('#listupdates').prepend(li);
                     $("#listupdates li:first-child").slideDown();
                     // invoerveld opnieuw leeg maken
