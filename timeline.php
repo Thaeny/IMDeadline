@@ -120,10 +120,8 @@ $tasks = $loadAllTasks->getAllTasks();
 
 
 
-
-
-<script src="js/jQuery.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="js/jQuery.js"></script>
 <script src="bootstrap/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </body>
 </html>

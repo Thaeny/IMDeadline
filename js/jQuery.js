@@ -73,9 +73,9 @@ $( document ).ready(function() {
                     // update tonen
                     var li = "<li class='commentBox' style='display: none' id='" + response.id + "'>" +
 
-                        "<p style='color: blue;' id='commentUsername'>" + username +  " </p>"
+                        "<p class='commentUsername' id='commentUsername'>" + username +  " </p><p class='commentText'>"
 
-                         + message + "</li>";
+                         + message + "</p></li>";
                     
                     
                     

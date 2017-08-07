@@ -133,14 +133,14 @@ $allComments = $comment->GetComments($taskID);
 
             <form class="commentsForm" method="post" action="">
                 <div class="statusupdates">
-                    <input type="text" placeholder="What's on your mind?" id="activitymessage" name="activitymessage" />
+                    <input class="inputBox" type="text" style="font-family: Lato;" placeholder="What's on your mind?" id="activitymessage" name="activitymessage" />
                     <input type="hidden" name="action" value="nieuweActivity" />
 
                     <input type="hidden" name="taskId" id="taskId" value="<?php echo $_GET['id'] ?>">
                     <input type="hidden" name="username" id="username" value="<?php echo $_SESSION['user'] ?>">
-                    <input id="btnSubmit" type="submit" value="Share" />
+                    <input class="sendBTN" id="btnSubmit" type="submit" value="Send" />
 
-                    <ul id="listupdates">
+                    <ul style="font-family: Lato;" id="listupdates">
                         <?php
                         if(count($allComments) > 0)
                         {

@@ -44,10 +44,12 @@ a:hover, a:visited, a:link, a:active
     padding: 5px 20px;
     margin-right: 20px;
     margin-top:7px;
+    transition-duration: 0.3s;
     font-family: "Lato", "proxima-nova", "Helvetica Neue", Arial, sans-serif;
 }
     #addBTN1:hover {
         background-color: royalblue;
+        transition-duration: 0.3s;
     }
 
     .dropdown-menu a{
@@ -383,7 +385,8 @@ info{
     background-color: white;
     border: 0.5px solid lightgrey;
     margin-bottom: 10px;
-    padding: 20px 40px;
+    padding: 15px 40px;
+    border-radius: 3px;
 }
 
 .commentUsername{
@@ -401,10 +404,36 @@ info{
     font-family: "Lato", "proxima-nova", "Helvetica Neue", Arial, sans-serif;
 }
 
+.inputBox{
+    height: 40px;
+    width: 420px;
+    border-radius: 3px;
+    padding-left: 20px;
+    border: 1px solid lightgray;
+}
 
+.sendBTN{
+    background-color: cornflowerblue;
+    padding: 11px 20px;
+    margin-top: 1px;
+    color: white;
+    border-radius: 3px;
+    border: 1px solid cornflowerblue;
+    font-size: 1em;
+    transition-duration: 0.3s;
+    font-weight: 300;
+    font-family: "Lato", "proxima-nova", "Helvetica Neue", Arial, sans-serif;
 
+}
 
+.sendBTN:hover{
+    background-color: royalblue;
+    transition-duration: 0.3s;
+}
 
+#listupdates{
+    margin-top:20px;
+}
 
 
 
