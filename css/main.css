@@ -30,7 +30,7 @@ a:hover, a:visited, a:link, a:active
 
 #logo1{
     color: cornflowerblue;
-    font-family: "AtlasGroteskBold", "Helvetica Neue", "HelveticaNeue", "Helvetica", "Arial", sans-serif;
+    font-family: "Lato", "proxima-nova", "Helvetica Neue", Arial, sans-serif;
 }
     #logo1:hover{
         color: royalblue;
@@ -291,6 +291,7 @@ a:hover, a:visited, a:link, a:active
     }
 
 
+
                 /* TASKDETAIL */
                 /* TASKDETAIL */
                 /* TASKDETAIL */
@@ -434,6 +435,217 @@ info{
 #listupdates{
     margin-top:20px;
 }
+
+
+
+
+
+
+                /* REGISTER & LOGIN */
+                /* REGISTER & LOGIN */
+                /* REGISTER & LOGIN */
+                /* REGISTER & LOGIN */
+
+.form{
+    width: 500px;
+    height: 620px;
+    margin: 30px auto;
+    background-color: white;
+    border-radius: 15px;
+    border: 2px solid lightgrey;
+}
+
+#inlogForm{
+    margin: 50px auto;
+    height: 420px;
+
+}
+
+.form h1{
+    font-size: 2em;
+    font-weight: 500;
+    font-family: "Lato", "proxima-nova", "Helvetica Neue", Arial, sans-serif;
+    text-align: center;
+    color: cornflowerblue;
+    padding-top: 60px;
+    margin-bottom: 40px;
+}
+
+.labelname{
+    width: 100%;
+    padding-left: 20%;
+    clear: both;
+    margin-bottom: 5px;
+    font-size: 0.9em;
+    font-weight: 500;
+    font-family: "Lato", "proxima-nova", "Helvetica Neue", Arial, sans-serif;
+
+}
+
+.input{
+    clear: both;
+    width: 60%;
+    margin: 0 20%;
+    margin-bottom: 15px;
+    padding: 7.5px 0px;
+    border-radius: 2px;
+    border: 1px solid lightgrey;
+    padding-left: 15px;
+    font-size: 1em;
+    font-weight: 300;
+    font-family: "Lato", "proxima-nova", "Helvetica Neue", Arial, sans-serif;
+
+}
+
+.registerBTN{
+    background-color: cornflowerblue;
+    width: 60%;
+    padding: 15px 20px;
+    border-radius: 3px;
+    border: 1px solid cornflowerblue;
+    color: white;
+    margin: 2.5% 20%;
+    transition-duration: 0.2s;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: "Lato", "proxima-nova", "Helvetica Neue", Arial, sans-serif;
+}
+
+.registerBTN:hover{
+    background-color: royalblue;
+    transition-duration: 0.2s;
+}
+
+.alreadyP{
+    text-align: center;
+    font-size: 0.9em;
+    font-weight: 300;
+    color: slategrey;
+    margin-top: 10px;
+    font-family: "Lato", "proxima-nova", "Helvetica Neue", Arial, sans-serif;
+
+}
+
+.alreadyP a{
+    color: cornflowerblue;
+}
+.alreadyP a:hover{
+    color: royalblue;
+}
+
+
+
+
+
+
+                /* ADD LIST & TASK STYLE */
+                /* ADD LIST & TASK STYLE */
+                /* ADD LIST & TASK STYLE */
+                /* ADD LIST & TASK STYLE */
+
+.listForm, .taskForm{
+    width: 40%;
+    position: absolute;
+    background-color: white;
+    clear: both;
+    margin: 100px 30% 100px 30%;
+    text-align: center;
+    padding: 20px 50px;
+    border-radius: 15px;
+    border: 2px solid lightgrey;
+    font-family: "Lato", "proxima-nova", "Helvetica Neue", Arial, sans-serif;
+
+}
+
+.listForm{
+    padding-top: 50px;
+    height: 350px;
+}
+
+.taskForm{
+    height: 700px;
+}
+
+.listNameInput{
+    padding-top: 30px;
+    font-size: 1.1em;
+    font-weight: 500;
+    color: lightslategrey;
+    font-family: "Lato", "proxima-nova", "Helvetica Neue", Arial, sans-serif;
+
+}
+
+.createListBTN, .createTaskBTN{
+    background-color: cornflowerblue;
+    color: white;
+    font-family: "Lato", "proxima-nova", "Helvetica Neue", Arial, sans-serif;
+    font-size: 1em;
+    font-weight: 300;
+    margin-top: -30px;
+}
+
+.createListBTN:hover{
+    color: white;
+    background-color: royalblue;
+}
+
+.TaskName{
+    margin-top:50px;
+    font-family: "Lato", "proxima-nova", "Helvetica Neue", Arial, sans-serif;
+    font-size: 1.2em;
+    color: dimgrey;
+    font-weight: 300;
+}
+
+#date{
+    margin-top: -25px;
+    width: 35%;
+    float: left;
+    font-family: "Lato", "proxima-nova", "Helvetica Neue", Arial, sans-serif;
+}
+
+#hours{
+    width: 80px;
+    float: right;
+    margin-top: -56px;
+    padding: 10px 0 10px 10px;
+    font-family: "Lato", "proxima-nova", "Helvetica Neue", Arial, sans-serif;
+
+}
+
+.fileTitle{
+    text-align: left;
+    margin-left: 50px;
+    margin-top: 20px;
+    color: dimgrey;
+    font-weight: 300;
+
+}
+
+.chooseList{
+    width: 35%;
+    float: left;
+    margin-left: 50px;
+}
+.chooseCourse{
+    width: 35%;
+    float: right;
+    margin-right: 60px;
+    margin-top: -51px;
+}
+
+.info{
+    text-align: left;
+    margin-left: 50px;
+    margin-top: 30px;
+    color: dimgrey;
+    font-weight: 300;
+    margin-bottom: 10px;
+}
+
+
+
+
 
 
 

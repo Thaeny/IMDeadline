@@ -122,23 +122,23 @@ $fileType = pathinfo($target_file,PATHINFO_EXTENSION);
 
 <div class="main">
 
-
-    <form style="padding-top: 170px; text-align: center;" action="" method="post" enctype="multipart/form-data">
+<div class="taskForm">
+    <form action="" method="post" enctype="multipart/form-data">
 
 
         <div class="addTaskForm">
-            <label for="taskname">Give your new task a specific name.</label>
+            <label class="TaskName" for="taskname">Give your new task a specific name.</label>
             <br><br><br>
-            <textarea style="text-align: center; font-size: 1.1em; border: 1px solid lightgrey;" rows="1" cols="30" name="taskname" id="taskname" placeholder="Name your task here..."></textarea>
+            <textarea class="input" style="text-align: center; font-size: 1.1em; border: 1px solid lightgrey;" rows="1" cols="30" name="taskname" id="taskname" placeholder="Name your task here..."></textarea>
         </div>
 
         <br><br>
 
 
-        <input type="date" name="date">
+        <input id="date" class="date input" type="date" name="date">
 
 
-        <input style="width: 70px;" placeholder="Hours" name="workhours" list="workhours">
+        <input id="hours" class="hours input" placeholder="Hours" name="workhours" list="workhours">
 
         <datalist id="workhours">
             <option value="5">
@@ -156,15 +156,15 @@ $fileType = pathinfo($target_file,PATHINFO_EXTENSION);
 
         <br>
 
-        Select image to upload: <br><br>
-        <input style="margin:  0 auto;" type="file" name="fileToUpload" id="fileToUpload">
+        <p class="fileTitle">Select file to upload:</p><br><br>
+        <input style="padding-left: 65px; margin-top: -10px; color: dimgray; font-size: 0.9em;" type="file" name="fileToUpload" id="fileToUpload">
 
 
         <br><br>
 
 
 
-        <input placeholder="Select a list" name="listname" list="lists">
+        <input placeholder="Select a list" class="input chooseList" name="listname" list="lists">
         <datalist id="lists">
             <?php
             $conn = Db::getInstance();
@@ -176,7 +176,7 @@ $fileType = pathinfo($target_file,PATHINFO_EXTENSION);
             ?>
         </datalist>
 
-        <input placeholder="Select a course" name="coursename" list="courses">
+        <input placeholder="Select a course" class="input chooseCourse" name="coursename" list="courses">
         <datalist id="courses">
             <?php
             $conn = Db::getInstance();
@@ -189,19 +189,19 @@ $fileType = pathinfo($target_file,PATHINFO_EXTENSION);
         </datalist>
 
         <br><br>
-            <p>Info:</p>
-            <textarea name="taskInfo" rows="5" cols="40" id="taskInfo"></textarea>
+            <p class="info">Extra information about the task:</p>
+            <textarea style="border-radius: 3px; border: 1px solid darkgrey;" name="taskInfo" rows="5" cols="40" id="taskInfo"></textarea>
 
         <br><br><br>
 
-        <div class="createTaskBTN">
+        <div>
             <input type="hidden" name="action" value="newTask" />
-            <input class="btn" style="color: white;background-color: cornflowerblue" id="createTaskBTN" type="submit" value="Create Task" name="submit">
+            <input class="btn createTaskBTN" style="margin: 20px auto;" id="createTaskBTN" type="submit" value="Create Task" name="submit">
         </div>
         <?php $errormsg ?>
     </form>
 
-
+</div>
 
 
 

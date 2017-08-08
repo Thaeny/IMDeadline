@@ -39,29 +39,29 @@ $login->Login();
 
 <div class="container">
 
-    <div class="form">
+    <div class="form" id="inlogForm">
         <div class="regnow">
-            <h1>IMDTEREST</h1>
+            <h1>IMDeadline</h1>
         </div>
 
         <?php echo $errormessage ?>
 
         <form action="" method="post">
             <div class="email">
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email" placeholder="Your email"></div>
+                <label class="labelname" for="email">Email</label>
+                <input class="input" type="email" name="email" id="email" placeholder="Your email"></div>
 
             <div class="password">
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password" placeholder="Your password"></div>
+                <label class="labelname" for="password">Password</label>
+                <input class="input" type="password" name="password" id="password" placeholder="Your password"></div>
 
-            <button>
+            <button class="registerBTN">
                 Login
             </button>
 
         </form>
 
-        <a href="register.php" class="nacc">Nog geen account? Registreer nu!</a>
+        <p class="alreadyP">Don't have an account yet? Register <a href="register.php" class="nacc">here</a>!</p>
 
 
 

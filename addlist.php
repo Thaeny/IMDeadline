@@ -87,26 +87,26 @@ if(!empty($_POST))
 
 <div class="main">
 
-
-    <form style="padding-top: 200px; text-align: center;" action="" method="post" enctype="multipart/form-data">
+<div class="listForm">
+    <form action="" method="post" enctype="multipart/form-data">
 
 
         <div class="addListForm">
-            <label for="listname">Give your new list a specific name.</label><br><br><br>
-            <textarea style="text-align: center; font-size: 1.1em; border: 1px solid lightgrey;" rows="1" cols="30" name="listname" id="listname" placeholder="Name your list here..."></textarea>
+            <label class="listNameInput" for="listname">Give your new list a specific name.</label><br><br><br>
+            <textarea class="input" style="text-align: center; font-size: 1.1em; border: 1px solid lightgrey;" rows="1" cols="30" name="listname" id="listname" placeholder="Name your list here..."></textarea>
         </div>
         <br><br>
 
         <br><br>
 
-        <div class="createListBTN">
+        <div>
             <input type="hidden" name="action" value="newList" />
-            <input class="btn" id="createListBTN" type="submit" value="Create List" name="submit">
+            <input class="btn createListBTN" id="createListBTN" type="submit" value="Create List" name="submit">
         </div>
 
     </form>
 
-
+</div>
 
 
 

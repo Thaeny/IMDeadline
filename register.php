@@ -49,30 +49,30 @@ if(!empty($_POST)){
 
         <form action="" method="post">
             <div class="email">
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email" placeholder="Your email"></div>
+                <label class="labelname" for="email">Email</label>
+                <input class="input" type="email" name="email" id="email" placeholder="Your email"></div>
 
             <div class="firstname">
-                <label for="firstname">First name</label>
-                <input type="text" name="firstname" id="firstname" placeholder="Your first name"></div>
+                <label class="labelname" for="firstname">First name</label>
+                <input class="input" type="text" name="firstname" id="firstname" placeholder="Your first name"></div>
 
             <div class="lastname">
-                <label for="lastname">Last name</label>
-                <input type="text" name="lastname" id="lastname" placeholder="Your last name"></div>
+                <label class="labelname" for="lastname">Last name</label>
+                <input class="input" type="text" name="lastname" id="lastname" placeholder="Your last name"></div>
 
             <div class="username">
-                <label for="username">Username</label>
-                <input type="text" name="username" id="username" placeholder="Your username"></div>
+                <label class="labelname" for="username">Username</label>
+                <input class="input" type="text" name="username" id="username" placeholder="Your username"></div>
 
             <div class="password">
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password" placeholder="Your password"></div>
+                <label class="labelname" for="password">Password</label>
+                <input class="input" type="password" name="password" id="password" placeholder="Your password"></div>
 
-            <button>
+            <button class="registerBTN">
                 Register
             </button>
 
-            <p>Already have an account? Log in <a style='color: blue' href="login.php">here.</a></p>
+            <p class="alreadyP">Already have an account? Log in <a href="login.php">here.</a></p>
 
         </form>
     </div>
