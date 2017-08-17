@@ -139,18 +139,21 @@ class User{
                     }
 
                     else {
-                        return $errormessage = "<h4>Password should be at least 6 characters long.</h4>";
+                        throw new Exception("Password should be at least 6 characters long");
                     }
                 }
 
                 else {
-                    return $errormessage = "<h4>This username already exists.</h4>";
+                    throw new Exception("Username already exists");
                 }
             }
 
             else {
-                return $errormessage = "<h4>This email is already in use.</h4>";
-            }
+                throw new Exception("Email already exists");            }
+        }
+
+        else{
+            throw new Exception("Please fill in the empty fields");
         }
     }
 
@@ -173,18 +176,43 @@ class User{
             $var->bindParam(':email', $email);
             $var->execute();
             $res = $var->fetch();
+
             if(password_verify($password, $res['password'])){
                 // OK
                 session_start();
                 $_SESSION['user'] = $res['username'];
                 $_SESSION['id'] = $res['id'];
                 header("Location: timeline.php");
-            }else{
-                // Not OK
-                $errormessage = "<h4>Something went wrong</h4>";
             }
+
+            // IS EMAIL GEVULD?
+            else if(empty($email)){
+                throw new Exception("Please fill in your e-mail");
+            }
+
+            // IS PASSWORD GEVULD?
+            else if(empty($password)){
+                throw new Exception("Please fill in your password");
+            }
+
+            else {
+                throw new Exception("Your e-mail and password do not match.");
+
+            }
+
         }
+
     }
+
+
+
+
+
+
+
+
+
+
 
 
 

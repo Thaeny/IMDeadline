@@ -132,8 +132,7 @@ class Tasks
 
         if($statement->rowCount() > 0){
 
-            $error = "Taskname already in use";
-            return $error;
+            throw new Exception("Taskname already in use");
         }
         else {
 

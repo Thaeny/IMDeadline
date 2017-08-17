@@ -13,12 +13,21 @@ spl_autoload_register(function($class){
 });
 
 // Als post niet leeg is -> nieuwe User registreren via register-functie...
-if(!empty($_POST)){
-    $register = new User();
-    $register->Register();
+
+$register = new User();
+
+if(!empty($_POST)) {
+    try {
+        if ($register->Register()) {
+            header("Location: timeline.php");
+        } else {
+        }
+
+    }catch (Exception $e) {
+        $error = $e->getMessage();
+    }
+
 }
-
-
 
 
 
@@ -45,7 +54,6 @@ if(!empty($_POST)){
             <h1>IMDeadline</h1>
         </div>
 
-        <?php echo $errormessage ?>
 
         <form action="" method="post">
             <div class="email">
@@ -68,6 +76,9 @@ if(!empty($_POST)){
                 <label class="labelname" for="password">Password</label>
                 <input class="input" type="password" name="password" id="password" placeholder="Your password"></div>
 
+            <?php echo "<div class='errorInlog'>" . $error . "</div>" ?>
+
+
             <button class="registerBTN">
                 Register
             </button>
@@ -80,3 +91,5 @@ if(!empty($_POST)){
 </body>
 
 </html>
+
+}

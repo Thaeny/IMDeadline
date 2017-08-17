@@ -11,11 +11,22 @@ spl_autoload_register(function($class){
     include_once("classes/" .  $class . ".class.php");
 });
 
-
-$errormessage = "";
-
 $login = new User();
-$login->Login();
+
+if(!empty($_POST)){
+
+    try{
+        if($login->Login()){
+            header("Location: timeline.php");
+        } else{
+        }
+
+    } catch (Exception $e) {
+        $error = $e->getMessage();
+    }
+
+}
+
 
 ?>
 
@@ -44,16 +55,18 @@ $login->Login();
             <h1>IMDeadline</h1>
         </div>
 
-        <?php echo $errormessage ?>
 
         <form action="" method="post">
             <div class="email">
-                <label class="labelname" for="email">Email</label>
+                <label style="" class="labelname" for="email">Email</label>
                 <input class="input" type="email" name="email" id="email" placeholder="Your email"></div>
 
             <div class="password">
                 <label class="labelname" for="password">Password</label>
                 <input class="input" type="password" name="password" id="password" placeholder="Your password"></div>
+
+            <?php echo "<div class='errorInlog'>" . $error . "</div>" ?>
+
 
             <button class="registerBTN">
                 Login

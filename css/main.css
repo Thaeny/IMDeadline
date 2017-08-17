@@ -646,6 +646,17 @@ info{
 
 
 
+                    /* ERRORHANDLING */
+                    /* ERRORHANDLING */
+                    /* ERRORHANDLING */
+                    /* ERRORHANDLING */
+
+.errorInlog{
+    color: red;
+    padding-left: 20%;
+    font-family: "Lato", "proxima-nova", "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.8em;
+}
 
 
 

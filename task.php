@@ -151,7 +151,6 @@ $allComments = $comment->GetComments($taskID);
                         }
                         else
                         {
-                            echo "<li>Waiting for first status update</li>";
                         }
                         ?>
                     </ul>

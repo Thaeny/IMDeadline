@@ -19,10 +19,6 @@ $loadAllTasks = new Tasks();
 $tasks = $loadAllTasks->getAllTasks();
 
 
-
-
-
-
 ?>
 
 <!doctype html>
@@ -34,6 +30,7 @@ $tasks = $loadAllTasks->getAllTasks();
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- Latest compiled and minified CSS / Bootstrap -->
     <link rel="stylesheet" href="bootstrap/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="">
     <!-- Eigen css -->
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/reset.css">
@@ -78,7 +75,11 @@ $tasks = $loadAllTasks->getAllTasks();
 
         <div class="wall">
             <div class="titleContainer">
-                <p>Task overview</p>
+                <p>Task overview <?php foreach( $ja as $yes):  ?>
+                    <?php echo $yes['username']; ?>
+                    <?php endforeach; ?>
+
+                </p>
             </div>
 
             <div class="taskContainer">
@@ -88,9 +89,15 @@ $tasks = $loadAllTasks->getAllTasks();
                             <p id="taskTitle"><a href="task.php?id=<?php echo $task['taskId']; ?>"><?php echo $task['taskname']; ?></a></p><br>
                         <p id="taskDescriptions"><?php echo $task['coursename']; ?> - <?php echo $task['listname']; ?></p>
 
-                            <?php if($_SESSION['user'] == $task['username']): ?>
+                            <?php
+
+                            if($_SESSION['user'] == $task['username']): ?>
                                 <a href="#" class="btnDeleteTask" data-id="<?php echo $task['taskId'] ?>"></a>
                             <?php endif; ?>
+
+
+
+
 
                         <p id="taskDeadline"><?php echo $task['deadline']; ?></p>
 

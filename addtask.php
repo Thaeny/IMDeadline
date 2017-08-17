@@ -47,7 +47,7 @@ if(!empty($_POST))
         }
         catch (Exception $e)
         {
-            $feedback = $e->getMessage();
+            $error = $e->getMessage();
         }
     }
 }
@@ -198,7 +198,7 @@ $fileType = pathinfo($target_file,PATHINFO_EXTENSION);
             <input type="hidden" name="action" value="newTask" />
             <input class="btn createTaskBTN" style="margin: 20px auto;" id="createTaskBTN" type="submit" value="Create Task" name="submit">
         </div>
-        <?php $errormsg ?>
+        <?php echo "<div class='errorInlog'>" . $error . "</div>" ?>
     </form>
 
 </div>
