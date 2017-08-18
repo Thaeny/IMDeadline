@@ -8,14 +8,25 @@
 
 session_start();
 
-$errormessage = "";
 spl_autoload_register(function($class){
     include_once("classes/" .  $class . ".class.php");
 });
 
+if(!isset($_SESSION['user'])) {
+    header('Location: login.php');
+    exit();
+}
+
 $course = new Courses();
 $courses = $course->GetCourses();
 
+
+$user = new User();
+if($user->CheckAdmin()){
+    $admin = "ja";
+} else{
+    $admin = "nee";
+}
 
 
 
@@ -46,12 +57,20 @@ $courses = $course->GetCourses();
 
         <ul class="nav navbar-nav navbar-right">
             <li>
+                <p class="username"><?php echo $_SESSION['user'] ?></p>
+
                 <div class="dropdown">
                     <button id="addBTN1" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
                         <span class="glyphicon-plus"></span></button>
                     <ul class="dropdown-menu">
                         <li><a href="addlist.php">Add a list</a></li>
                         <li><a href="addtask.php">Add a task</a></li>
+                        <?php
+                        if($admin == "ja"): ?>
+                            <li><a href="addCourse.php">Add a course</a></li>
+                            <li><a href="addadmin.php">Add an administrator</a></li>
+                        <?php endif; ?>
+
                     </ul>
                 </div>
             </li>
@@ -86,6 +105,11 @@ $courses = $course->GetCourses();
                 <div class="lijst">
 
                     <h3><a href="course.php?id=<?php echo $c['courseId']; ?> "><?php echo $c['coursename']; ?></a></h3>
+
+                    <?php
+                    if($admin == "ja"): ?>
+                        <a href="#" class="btnDeleteCourse" data-id="<?php echo $c['courseId'] ?>"></a>
+                    <?php endif; ?>
 
                 </div>
             <?php endforeach; ?>

@@ -12,16 +12,29 @@ spl_autoload_register(function($class){
     include_once("classes/" .  $class . ".class.php");
 });
 
-// Checken of user ingelogd is als session...
 if(!isset($_SESSION['user'])) {
     header('Location: login.php');
     exit();
-} else {
-    //blabla
 }
 
-$courseTask =  new Tasks();
-$courseTasks = $courseTask->GetCourseTasks();
+$course = new Courses();
+
+if(!empty($_POST))
+{
+    if ($_POST['action'] === "newCourse" && $_SESSION['user'] ) {
+
+        $course->Coursename = $_POST['coursename'];
+
+        try{
+            $course->SaveCourse();
+            header('Location: courses.php');
+        }
+        catch (Exception $e)
+        {
+            $feedback = $e->getMessage();
+        }
+    }
+}
 
 
 
@@ -31,7 +44,6 @@ if($user->CheckAdmin()){
 } else{
     $admin = "nee";
 }
-
 
 ?>
 
@@ -60,6 +72,8 @@ if($user->CheckAdmin()){
 
         <ul class="nav navbar-nav navbar-right">
             <li>
+                <p class="username"><?php echo $_SESSION['user'] ?></p>
+
                 <div class="dropdown">
                     <button id="addBTN1" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
                         <span class="glyphicon-plus"></span></button>
@@ -68,10 +82,9 @@ if($user->CheckAdmin()){
                         <li><a href="addtask.php">Add a task</a></li>
                         <?php
                         if($admin == "ja"): ?>
-                            <li><a href="addCourse.php">Add a course</a></li>
+                            <li><a href="addcourse.php">Add a course</a></li>
                             <li><a href="addadmin.php">Add an administrator</a></li>
                         <?php endif; ?>
-
                     </ul>
                 </div>
             </li>
@@ -84,65 +97,31 @@ if($user->CheckAdmin()){
 </nav>
 
 <div class="main">
-    <div class="dashboard">
-        <div class="list-group">
-            <a href="timeline.php" class="list-group-item">Timeline</a>
-            <a href="lists.php" class="list-group-item">Lists</a>
-            <a href="courses.php" class="list-group-item">Courses</a>
-        </div>
+
+    <div class="listForm">
+        <form action="" method="post" enctype="multipart/form-data">
+
+
+            <div class="addListForm">
+                <label class="listNameInput" for="coursename">Give your new course a specific name.</label><br><br><br>
+                <textarea class="input" style="text-align: center; font-size: 1.1em; border: 1px solid lightgrey;" rows="1" cols="30" name="coursename" id="coursename" placeholder="Name your course here..."></textarea>
+            </div>
+            <br><br>
+
+            <br><br>
+
+            <div>
+                <input type="hidden" name="action" value="newCourse" />
+                <input class="btn createListBTN" id="createListBTN" type="submit" value="Create Course" name="submit">
+            </div>
+
+        </form>
+
     </div>
 
 
 
 
-    <div class="wall">
-        <div class="titleContainer">
-            <p>
-                <?php
-                foreach($_GET as $key => $value):?>
-                    <?php
-                    $conn = Db::getInstance();
-                    $query = $conn->query("SELECT * FROM courses WHERE (courseId = '".$value."')");
-                    while($r = $query->fetch()) {
-                        echo $r['coursename'];
-                    }
-                    ?>
-                <?php endforeach; ?>
-            </p>
-
-
-
-        </div>
-
-        <div class="taskContainer">
-
-            <?php foreach( $courseTasks as $c):  ?>
-                <a href="task.php?id=<?php echo $c['taskId']; ?>">
-                    <div class="task">
-                        <p id="taskTitle"><?php echo $c['taskname']; ?></p><br>
-                        <p id="taskDescriptions"><?php echo $c['coursename']; ?> - <?php echo $c['listname']; ?></p>
-
-                            <?php if($_SESSION['user'] == $c['username']): ?>
-                                <a href="#" class="btnDeleteTask" data-id="<?php echo $c['taskId'] ?>"></a>
-                            <?php endif; ?>
-
-                        <p id="taskDeadline"><?php echo $c['deadline']; ?></p>
-
-                        <p id="daysRemaining"><?php echo $courseTask->DaysRemaining($c['taskId']); ?></p>
-                        <p id="daysText">days left</p>
-
-                        <br><br>
-
-
-                    </div>
-                </a>
-
-
-            <?php endforeach; ?>
-
-
-        </div>
-    </div>
 </div>
 
 
@@ -152,7 +131,6 @@ if($user->CheckAdmin()){
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="js/jQuery.js"></script>
 <script src="bootstrap/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </body>
 </html>

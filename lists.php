@@ -8,15 +8,28 @@
 
 session_start();
 
-$errormessage = "";
 spl_autoload_register(function($class){
     include_once("classes/" .  $class . ".class.php");
 });
+
+if(!isset($_SESSION['user'])) {
+    header('Location: login.php');
+    exit();
+}
+
 
 $list =  new Lists();
 $list->Username = $_SESSION['user'];
 $lists = $list->GetLists();
 
+
+
+$user = new User();
+if($user->CheckAdmin()){
+    $admin = "ja";
+} else{
+    $admin = "nee";
+}
 
 
 
@@ -47,12 +60,20 @@ $lists = $list->GetLists();
 
         <ul class="nav navbar-nav navbar-right">
             <li>
+                <p class="username"><?php echo $_SESSION['user'] ?></p>
+
                 <div class="dropdown">
                     <button id="addBTN1" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
                         <span class="glyphicon-plus"></span></button>
                     <ul class="dropdown-menu">
                         <li><a href="addlist.php">Add a list</a></li>
                         <li><a href="addtask.php">Add a task</a></li>
+                        <?php
+                        if($admin == "ja"): ?>
+                            <li><a href="addCourse.php">Add a course</a></li>
+                            <li><a href="addadmin.php">Add an administrator</a></li>
+                        <?php endif; ?>
+
                     </ul>
                 </div>
             </li>
@@ -89,7 +110,7 @@ $lists = $list->GetLists();
                     <h3><a href="list.php?id=<?php echo $lijst['listId']; ?> "><?php echo $lijst['listname']; ?></a></h3>
 
 
-                    <?php if($_SESSION['user'] == $lijst['username']): ?>
+                    <?php if($_SESSION['user'] == $lijst['username'] or $admin == "ja"): ?>
                         <a href="#" class="btnDeleteList" data-id="<?php echo $lijst['listId'] ?>"></a>
                     <?php endif; ?>
 

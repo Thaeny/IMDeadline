@@ -8,7 +8,6 @@
 
 session_start();
 
-$errormessage = "";
 spl_autoload_register(function($class){
     include_once("classes/" .  $class . ".class.php");
 });
@@ -23,6 +22,16 @@ if(!isset($_SESSION['user'])) {
 
 $listTask =  new Tasks();
 $listTasks = $listTask->GetListTasks();
+
+
+
+$user = new User();
+if($user->CheckAdmin()){
+    $admin = "ja";
+} else{
+    $admin = "nee";
+}
+
 
 ?>
 
@@ -57,6 +66,11 @@ $listTasks = $listTask->GetListTasks();
                     <ul class="dropdown-menu">
                         <li><a href="addlist.php">Add a list</a></li>
                         <li><a href="addtask.php">Add a task</a></li>
+                        <?php
+                        if($admin == "ja"): ?>
+                            <li><a href="addCourse.php">Add a course</a></li>
+                            <li><a href="addadmin.php">Add an administrator</a></li>
+                        <?php endif; ?>
                     </ul>
                 </div>
             </li>

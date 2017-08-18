@@ -95,6 +95,24 @@ class User{
     }
 
 
+    //--------------------------------------------------------- Save Admins
+
+    public function SaveAdmin(){
+
+        $admin = "1";
+
+        $conn = Db::getInstance();
+
+        $statement = $conn->prepare("INSERT INTO users (username, email, password, admin) VALUES (:username, :email, :password, :admin);");
+        $statement->bindValue(":username", $this->getUsername());
+        $statement->bindValue(":email", $this->getEmail());
+        $statement->bindValue(":password", $this->getPassword());
+        $statement->bindValue(":admin", $admin);
+
+        $statement->execute();
+        $_SESSION['id'] = $conn->lastInsertId();
+    }
+
 
     //--------------------------------------------------------- Register Users
 
@@ -203,6 +221,91 @@ class User{
         }
 
     }
+
+
+
+    //--------------------------------------------------------- Check If Admin
+
+    public function CheckAdmin(){
+
+        $conn = Db::getInstance();
+
+        $var = $conn->prepare("SELECT admin FROM users WHERE username = :username;");
+        $var->bindParam(':username', $_SESSION['user']);
+        $var->execute();
+        $res = $var->fetch();
+
+        if(empty($res['admin'])){
+
+            return false;
+        }
+        else{
+
+            return true;
+        }
+    }
+
+
+
+
+
+
+    //--------------------------------------------------------- Register Admin
+
+    public function RegisterAdmin(){
+        if(!empty($_POST) &&$_POST['username']!=''  &&$_POST['email']!='' &&$_POST['password']!=''){
+            $conn = Db::getInstance();
+            $stmt = $conn->prepare('SELECT COUNT(email) AS EmailCount FROM users WHERE email = :email');
+            $stmt->execute(array('email' => $_POST['email']));
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($result['EmailCount'] == 0) {
+
+                $conn = Db::getInstance();
+                $stmt = $conn->prepare('SELECT COUNT(username) AS UsernameCount FROM users WHERE username = :username');
+                $stmt->execute(array('username' => $_POST['username']));
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                if ($result['UsernameCount'] == 0) {
+
+                    if(strlen($_POST["password"]) >= '6'){
+
+                        $email = $_POST['email'];
+                        $username = $_POST['username'];
+                        $options = [
+                            'cost'=>14,
+                        ];
+                        $password = password_hash($_POST["password"],PASSWORD_DEFAULT,$options);
+
+                        $user = new User();
+                        $user->setEmail($email);
+                        $user->setUsername($username);
+                        $user->setPassword($password);
+                        $user->SaveAdmin();
+
+                        header("Location: timeline.php");
+                    }
+
+                    else {
+                        throw new Exception("Password should be at least 6 characters long");
+                    }
+                }
+
+                else {
+                    throw new Exception("Username already exists");
+                }
+            }
+
+            else {
+                throw new Exception("Email already exists");            }
+        }
+
+        else{
+            throw new Exception("Please fill in the empty fields");
+        }
+    }
+
+
 
 
 

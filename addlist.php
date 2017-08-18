@@ -8,7 +8,6 @@
 
 session_start();
 
-$errormessage = "";
 spl_autoload_register(function($class){
     include_once("classes/" .  $class . ".class.php");
 });
@@ -40,6 +39,12 @@ if(!empty($_POST))
 
 
 
+$user = new User();
+if($user->CheckAdmin()){
+    $admin = "ja";
+} else{
+    $admin = "nee";
+}
 
 ?>
 
@@ -68,12 +73,19 @@ if(!empty($_POST))
 
         <ul class="nav navbar-nav navbar-right">
             <li>
+                <p class="username"><?php echo $_SESSION['user'] ?></p>
+
                 <div class="dropdown">
                     <button id="addBTN1" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
                         <span class="glyphicon-plus"></span></button>
                     <ul class="dropdown-menu">
                         <li><a href="addlist.php">Add a list</a></li>
                         <li><a href="addtask.php">Add a task</a></li>
+                        <?php
+                        if($admin == "ja"): ?>
+                            <li><a href="addcourse.php">Add a course</a></li>
+                            <li><a href="addadmin.php">Add an administrator</a></li>
+                        <?php endif; ?>
                     </ul>
                 </div>
             </li>

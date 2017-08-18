@@ -49,6 +49,25 @@ $( document ).ready(function() {
 
 
 
+    /* DELETE TASK */
+
+    var deleteVar3 = document.getElementsByClassName("btnDeleteCourse");
+
+    for (var i = 0; i < deleteVar3.length; i++) {
+        deleteVar3[i].addEventListener('click', function (e) {
+            console.log(this.getAttribute("data-id"));
+            $.post('ajax/deleteCourse.php', {id: this.getAttribute("data-id")}
+                , function (data) {
+                    console.log(data);
+
+                    //alert("delete");
+                });
+            e.preventDefault();
+            $(this).parent().remove();
+        });
+    }
+
+
 
 
 

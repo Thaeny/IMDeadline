@@ -66,6 +66,9 @@ class Lists
         De methode Save dient om een nieuwe LIST te bewaren in onze databank.
         */
     {
+
+
+
         $db = Db::getInstance();
 
         $stmt = $db->prepare("INSERT INTO lists (listname, username) VALUES (:listname, :username)");

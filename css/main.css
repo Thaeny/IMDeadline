@@ -60,7 +60,22 @@ a:hover, a:visited, a:link, a:active
     color: royalblue;
 }
 
+.username{
+    position: absolute;
+    z-index: 10;
+    top: 15px;
+    right: 100px;
+    font-size: 1.1em;
+    opacity: 0.8;
+    font-weight: 300;
+    font-family: "Lato", "proxima-nova", "Helvetica Neue", Arial, sans-serif;
+    color: cornflowerblue;
+}
 
+.username:hover{
+    opacity: 1;
+    cursor: pointer;
+}
 
 
                 /* MAIN */
@@ -173,7 +188,7 @@ a:hover, a:visited, a:link, a:active
         cursor: pointer;
     }
 
-.btnDeleteList{
+.btnDeleteList, .btnDeleteCourse{
     opacity: 0.4;
     width: 20px;
     height: 20px;
@@ -187,7 +202,7 @@ a:hover, a:visited, a:link, a:active
     transition-duration: 0.15s;
 }
 
-    .btnDeleteList:hover{
+    .btnDeleteList:hover, .btnDeleteCourse{
         opacity: 0.8;
         transition-duration: 0.15s;
     }
@@ -653,7 +668,7 @@ info{
 
 .errorInlog{
     color: red;
-    padding-left: 20%;
+    text-align: center;
     font-family: "Lato", "proxima-nova", "Helvetica Neue", Arial, sans-serif;
     font-size: 0.8em;
 }
@@ -661,6 +676,20 @@ info{
 
 
 
+
+
+                    /* ADMIN STUFF */
+                    /* ADMIN STUFF */
+                    /* ADMIN STUFF */
+                    /* ADMIN STUFF */
+
+#addAdminTitle{
+    text-align: center;
+    font-family: "Lato", "proxima-nova", "Helvetica Neue", Arial, sans-serif;
+    font-size: 1.4em;
+    color: cornflowerblue;
+    margin: 50px auto;
+}
 
 
 

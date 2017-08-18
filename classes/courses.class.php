@@ -44,7 +44,7 @@ class Courses
 
     public function SaveCourse()
         /*
-        De methode Save dient om een nieuwe LIST te bewaren in onze databank.
+        De methode Save dient om een nieuwe COURSE te bewaren in onze databank.
         */
     {
         $db = Db::getInstance();

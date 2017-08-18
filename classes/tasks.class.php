@@ -134,7 +134,14 @@ class Tasks
 
             throw new Exception("Taskname already in use");
         }
-        else {
+
+        else if(empty($_POST['date'])) {
+
+            throw new Exception("Please fill in a deadline");
+        }
+
+        else
+        {
 
             $db = Db::getInstance();
             $stmt = $db->prepare("INSERT INTO tasks (taskname, username, deadline, listname, coursename, info, workhours, filename) VALUES (:taskname, :username, :deadline, :listname, :coursename, :info, :workhours, :filename)");

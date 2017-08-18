@@ -12,6 +12,7 @@ spl_autoload_register(function($class){
     include_once("classes/" .  $class . ".class.php");
 });
 
+
 // Als post niet leeg is -> nieuwe User registreren via register-functie...
 
 $register = new User();
@@ -68,7 +69,7 @@ if(!empty($_POST)) {
                 <label class="labelname" for="lastname">Last name</label>
                 <input class="input" type="text" name="lastname" id="lastname" placeholder="Your last name"></div>
 
-            <div class="username">
+            <div class="">
                 <label class="labelname" for="username">Username</label>
                 <input class="input" type="text" name="username" id="username" placeholder="Your username"></div>
 

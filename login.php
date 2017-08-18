@@ -13,6 +13,7 @@ spl_autoload_register(function($class){
 
 $login = new User();
 
+
 if(!empty($_POST)){
 
     try{

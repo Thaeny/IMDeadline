@@ -8,7 +8,6 @@
 
 session_start();
 
-$errormessage = "";
 spl_autoload_register(function($class){
     include_once("classes/" .  $class . ".class.php");
 });
@@ -73,6 +72,12 @@ $fileType = pathinfo($target_file,PATHINFO_EXTENSION);
 
 
 
+$user = new User();
+if($user->CheckAdmin()){
+    $admin = "ja";
+} else{
+    $admin = "nee";
+}
 
 
 
@@ -103,6 +108,8 @@ $fileType = pathinfo($target_file,PATHINFO_EXTENSION);
 
         <ul class="nav navbar-nav navbar-right">
             <li>
+                <p class="username"><?php echo $_SESSION['user'] ?></p>
+
                 <div class="dropdown">
                     <button id="addBTN1" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
                         <span class="glyphicon-plus"></span></button>
@@ -170,7 +177,7 @@ $fileType = pathinfo($target_file,PATHINFO_EXTENSION);
             $conn = Db::getInstance();
             $query = $conn->query("SELECT * FROM lists ");
             while($l = $query->fetch()) {
-                echo '<option value="'.$l['listname'].'">';
+                echo '<option value="'. htmlspecialchars($l['listname']) .'">';
 
             }
             ?>
@@ -182,7 +189,7 @@ $fileType = pathinfo($target_file,PATHINFO_EXTENSION);
             $conn = Db::getInstance();
             $query = $conn->query("SELECT * FROM courses ");
             while($c = $query->fetch()) {
-                echo '<option value="'.$c['coursename'].'">';
+                echo '<option value="'. htmlspecialchars($c['coursename']).'">';
 
             }
             ?>
@@ -192,13 +199,14 @@ $fileType = pathinfo($target_file,PATHINFO_EXTENSION);
             <p class="info">Extra information about the task:</p>
             <textarea style="border-radius: 3px; border: 1px solid darkgrey;" name="taskInfo" rows="5" cols="40" id="taskInfo"></textarea>
 
-        <br><br><br>
+        <br><br>
+        <?php echo "<div class='errorInlog'>" . htmlspecialchars($error) . "</div>" ?>
+        <br>
 
         <div>
             <input type="hidden" name="action" value="newTask" />
             <input class="btn createTaskBTN" style="margin: 20px auto;" id="createTaskBTN" type="submit" value="Create Task" name="submit">
         </div>
-        <?php echo "<div class='errorInlog'>" . $error . "</div>" ?>
     </form>
 
 </div>

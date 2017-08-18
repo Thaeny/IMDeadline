@@ -8,15 +8,33 @@
 
 session_start();
 
-$errormessage = "";
 spl_autoload_register(function($class){
     include_once("classes/" .  $class . ".class.php");
 });
 
 
-
 $loadAllTasks = new Tasks();
 $tasks = $loadAllTasks->getAllTasks();
+
+
+if(!isset($_SESSION['user'])) {
+    header('Location: login.php');
+    exit();
+}
+
+
+
+
+$user = new User();
+if($user->CheckAdmin()){
+    $admin = "ja";
+} else{
+    $admin = "nee";
+}
+
+
+
+
 
 
 ?>
@@ -47,12 +65,19 @@ $tasks = $loadAllTasks->getAllTasks();
 
             <ul class="nav navbar-nav navbar-right">
                 <li>
+                    <p class="username"><?php echo $_SESSION['user'] ?></p>
+
                     <div class="dropdown">
                         <button id="addBTN1" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
                             <span class="glyphicon-plus"></span></button>
                         <ul class="dropdown-menu">
                             <li><a href="addlist.php">Add a list</a></li>
                             <li><a href="addtask.php">Add a task</a></li>
+                            <?php
+                            if($admin == "ja"): ?>
+                                <li><a href="addCourse.php">Add a course</a></li>
+                                <li><a href="addadmin.php">Add an administrator</a></li>
+                            <?php endif; ?>
                         </ul>
                     </div>
                 </li>
@@ -75,33 +100,28 @@ $tasks = $loadAllTasks->getAllTasks();
 
         <div class="wall">
             <div class="titleContainer">
-                <p>Task overview <?php foreach( $ja as $yes):  ?>
-                    <?php echo $yes['username']; ?>
-                    <?php endforeach; ?>
-
-                </p>
+                <p>Task overview</p>
             </div>
 
             <div class="taskContainer">
                 <?php foreach( $tasks as $task):  ?>
 
                         <div class="task">
-                            <p id="taskTitle"><a href="task.php?id=<?php echo $task['taskId']; ?>"><?php echo $task['taskname']; ?></a></p><br>
-                        <p id="taskDescriptions"><?php echo $task['coursename']; ?> - <?php echo $task['listname']; ?></p>
+                            <p id="taskTitle"><a href="task.php?id=<?php echo htmlspecialchars($task['taskId']); ?>"><?php echo htmlspecialchars($task['taskname']); ?></a></p><br>
+                        <p id="taskDescriptions"><?php echo htmlspecialchars($task['coursename']); ?> - <?php echo htmlspecialchars($task['listname']); ?></p>
 
                             <?php
-
-                            if($_SESSION['user'] == $task['username']): ?>
-                                <a href="#" class="btnDeleteTask" data-id="<?php echo $task['taskId'] ?>"></a>
+                            if($_SESSION['user'] == $task['username'] or $admin == "ja"): ?>
+                                <a href="#" class="btnDeleteTask" data-id="<?php echo htmlspecialchars($task['taskId']) ?>"></a>
                             <?php endif; ?>
 
 
 
 
 
-                        <p id="taskDeadline"><?php echo $task['deadline']; ?></p>
+                        <p id="taskDeadline"><?php echo htmlspecialchars($task['deadline']); ?></p>
 
-                                <p id="daysRemaining"><?php echo $loadAllTasks->DaysRemaining($task['taskId']); ?></p>
+                                <p id="daysRemaining"><?php echo $loadAllTasks->DaysRemaining(htmlspecialchars($task['taskId'])); ?></p>
                                 <p id="daysText">days left</p>
 
                         <br><br>
